@@ -73,6 +73,22 @@
     </form>
   </div>
 
+  <!-- Cards table
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <table class="u-full-width">
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Front</th>
+      <th>Back</th>
+      <th>Author</th>
+      <th>Tags</th>
+    </tr>
+  </thead>
+  <tbody id="tblCards">
+  </tbody>
+</table>
+
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
@@ -103,18 +119,28 @@ firebase.initializeApp(config);
 
     Reference to firbase.database object with added application
     specific properties and methods. *** Be careful not to override
-    the names defined in the firebase api.*/
+    the names defined in the firebase api.
+*/
 
 var database = firebase.database();
 
-database.refCards = database.ref("cards");
+var refCards = database.ref("cards");
 
 // Adds a card to the database
 database.addCard = function(card) {
 
   // add card to the cards reference with a unique key
-  this.refCards.push(card);
+  refCards.push(card);
 };
+
+// TODO: listen for changes in the cards data
+refCards.on("value", function(snapCards) {
+
+  var cards = snapCards.toJSON();
+});
+
+
+
 
 /*
     ----- form -----
@@ -149,6 +175,13 @@ var form = {
         database.addCard(card);
     }
 };
+
+
+/*
+    ----- table -----
+
+    Container for properties and methods for displaying cards.
+*/
 
 $(document).ready(function() {
 
