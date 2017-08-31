@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- TODO: get a favicon for the project -->
+  <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+
+    <header>
+      <h1>Add Cards</h1>
+      <hr>
+    </header>
+
+  <!-- Add Card Form
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <form>
+      <!-- card meta inputs -->
+      <h5>Meta</h5>
+      <div class="row">
+        <div class="six columns">
+          <label for="txtTopic">Topic</label>
+          <input class="u-full-width" type="text" placeholder="topic" id="txtTopic">
+        </div>
+        <div class="six columns">
+          <label for="txtAuthor">Author</label>
+          <input class="u-full-width" type="text" placeholder="name" id="txtAuthor">
+        </div>
+      </div>
+      <div class="row">
+        <label for="txtTags">Tags
+          <span class="label-body">Separate each tag with a space.</span>
+        </label>
+        <input class="u-full-width" type="text" placeholder="git merge..." id="txtTags">
+      </div>
+
+      <!-- front of card -->
+      <h5>Front</h5>
+      <label for="txtFront">Text (git command)</label>
+      <input class="u-full-width" type="text" placeholder="git merge..." id="txtFront">
+      
+      <!-- back of card -->
+      <h5>Back</h5>
+      <label for="txtBack">Text (clue or question)</label>
+      <textarea class="u-full-width" placeholder="What is..." id="txtBack"></textarea>    
+      <input class="button-primary" type="submit" value="Submit" id="btnSubmit">
+    </form>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<!-- Firebase
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+
+<script>
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyCAGvW613Tfgyi6e7a8e1U1Nh45tSvPjCo",
+    authDomain: "codedeck-17e00.firebaseapp.com",
+    databaseURL: "https://codedeck-17e00.firebaseio.com",
+    projectId: "codedeck-17e00",
+    storageBucket: "",
+    messagingSenderId: "82313729151"
+};
+firebase.initializeApp(config);
+
+/*
+    ----- database -----
+
+    Reference to firbase.database object with added application
+    specific properties and methods. *** Be careful not to override
+    the names defined in the firebase api.*/
+
+var database = firebase.database();
+
+database.refCards = database.ref("cards");
+
+// Adds a card to the database
+database.addCard = function(card) {
+
+  // add card to the cards reference with a unique key
+  this.refCards.push(card);
+};
+
+/*
+    ----- form -----
+
+    Container for properties and methods for the add card form.
+*/
+var form = {
+
+    // Gets input from the form and adds it to the database
+    submit: function() {
+
+        // get the input
+        var card = {
+            topic: $("#txtTopic").val().trim(),
+            author: $("#txtAuthor").val().trim(),
+            tags: $("#txtTags").val().trim(),
+            front: {
+                text: $("#txtFront").val().trim()
+            },
+            back: {
+                text: $("#txtBack").val().trim()
+            }
+        };
+
+        // reset front and back, leave meta fields unchanged
+        $("#txtFront, #txtBack").val("");
+
+        // set focus to topic input
+        $("#txtTopic").focus();
+
+        // add the card to the database
+        database.addCard(card);
+    }
+};
+
+$(document).ready(function() {
+
+    // listen for submit button click on add card form
+    $("#btnSubmit").on("click", function(event) {
+        event.preventDefault();
+        form.submit();
+    });
+});
+</script>
+</body>
+</html>
