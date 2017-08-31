@@ -14,7 +14,7 @@ content provider to listen to music to enhance the study experience.
 codeDeck is still in early development.
 
 ## Authors
-Julie Ching
-John Desrosiers
-Teddy Hidalgo
-Philip Ma
+* Julie Ching
+* John Desrosiers
+* Teddy Hidalgo
+* Philip Ma
