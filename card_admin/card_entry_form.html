@@ -81,6 +81,7 @@
                 <th>Back</th>
                 <th>Author</th>
                 <th>Tags</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody id="tblCards">
@@ -132,7 +133,7 @@ database.addCard = function(card) {
   refCards.push(card);
 };
 
-// TODO: listen for changes in the cards data
+// listen for changes in the cards data
 refCards.on("value", function(snapCards) {
   table.render(snapCards.toJSON());
 });
@@ -183,7 +184,7 @@ var form = {
 var table = {
   // Creates a row and returns it as a jquery object
   newRow: function(card, key="") {
-    var $row = $("<tr>").attr("id", "card" + key);
+    var $row = $("<tr>");
 
     // add data to row
     $("<td>").appendTo($row).text(card.topic);
@@ -192,7 +193,14 @@ var table = {
     $("<td>").appendTo($row).text(card.author);
     $("<td>").appendTo($row).text(card.tags);
 
-    console.log($row);
+    // add remove button
+    var $btn = $("<button>")
+      .text('x')
+      .attr({
+        class: "btnRemove",
+        'data-key': key
+    });
+    $("<td>").appendTo($row).append($btn);
 
     return $row;
   },
@@ -220,6 +228,8 @@ $(document).ready(function() {
         event.preventDefault();
         form.submit();
     });
+
+    // TODO listen for click on remove button
 });
 </script>
 </body>
