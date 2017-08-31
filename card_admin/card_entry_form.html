@@ -19,6 +19,17 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="skeleton.css">
+  <style>
+    /* remove card button */
+    .btnRemove {      
+      margin: 0;
+      line-height: 20px;
+      height: 20px;
+      max-width: 25px;
+      padding: 0 5px;
+      text-align: center;
+    }
+  </style>
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -32,13 +43,14 @@
   <div class="container">
 
     <header>
-      <h1>Add Cards</h1>
+      <h1>Manage Cards</h1>
       <hr>
     </header>
 
   <!-- Add Card Form
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <form>
+      <h2>Add Card</h2>
       <!-- card meta inputs -->
       <h5>Meta</h5>
       <div class="row">
@@ -67,7 +79,7 @@
       <h5>Back</h5>
       <label for="txtBack">Text (clue or question)</label>
       <textarea class="u-full-width" placeholder="What is..." id="txtBack"></textarea>    
-      <input class="button-primary" type="submit" value="Submit" id="btnSubmit">
+      <input class="button-primary" type="submit" value="Add" id="btnSubmit">
     </form>
     <!-- Cards table
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -222,7 +234,6 @@ var table = {
     // append a row for each card
     $.each(data, function(key) {
       $tbl.append(table.newRow(this, key));
-      console.log(key, this);
     });
   }
 };
