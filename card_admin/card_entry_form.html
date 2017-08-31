@@ -133,12 +133,15 @@ database.addCard = function(card) {
   refCards.push(card);
 };
 
+// Removes a card from the database
+database.removeCard = function(key) {
+  refCards.child(key).remove();
+}
+
 // listen for changes in the cards data
 refCards.on("value", function(snapCards) {
   table.render(snapCards.toJSON());
 });
-
-
 
 
 /*
@@ -180,6 +183,10 @@ var form = {
     ----- table -----
 
     Container for properties and methods for displaying cards data.
+
+    TODO: add an edit button which will change to an edit card view,
+          allow the user to make changes, and then save them or discard
+          the changes.
 */
 var table = {
   // Creates a row and returns it as a jquery object
@@ -229,7 +236,16 @@ $(document).ready(function() {
         form.submit();
     });
 
-    // TODO listen for click on remove button
+    // listen for click on remove button
+    $("tbody").on("click", function(event) {
+      // get the key
+      var key = $(event.target).attr("data-key");
+
+      // TODO ask user to confirm removing the card
+
+      // remove card from database
+      database.removeCard(key);
+    });
 });
 </script>
 </body>
