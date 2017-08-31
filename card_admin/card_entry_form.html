@@ -81,6 +81,9 @@
       <textarea class="u-full-width" placeholder="What is..." id="txtBack"></textarea>    
       <input class="button-primary" type="submit" value="Add" id="btnSubmit">
     </form>
+    <p>
+      Total cards: <span id="totalCards"></span>
+    </p>
     <!-- Cards table
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <table class="u-full-width">
@@ -151,6 +154,8 @@ database.removeCard = function(key) {
 // listen for changes in the cards data
 refCards.on("value", function(snapCards) {
   table.render(snapCards.toJSON());
+  // update number of cards
+  displayTotalCards(snapCards.numChildren());
 });
 
 
@@ -237,6 +242,11 @@ var table = {
     });
   }
 };
+
+// Displays the number of cards.
+function displayTotalCards(count) {
+  $("#totalCards").text(count);
+}
 
 $(document).ready(function() {
     // listen for submit button click on add card form
