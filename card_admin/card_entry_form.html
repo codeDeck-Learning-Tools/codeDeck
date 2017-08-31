@@ -71,23 +71,22 @@
       <textarea class="u-full-width" placeholder="What is..." id="txtBack"></textarea>    
       <input class="button-primary" type="submit" value="Submit" id="btnSubmit">
     </form>
-  </div>
-
-  <!-- Cards table
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <table class="u-full-width">
-  <thead>
-    <tr>
-      <th>Topic</th>
-      <th>Front</th>
-      <th>Back</th>
-      <th>Author</th>
-      <th>Tags</th>
-    </tr>
-  </thead>
-  <tbody id="tblCards">
-  </tbody>
-</table>
+    <!-- Cards table
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th>Topic</th>
+                <th>Front</th>
+                <th>Back</th>
+                <th>Author</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody id="tblCards">
+        </tbody>
+    </table>
+  </div> <!-- end container -->
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -102,6 +101,8 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
 
+<!-- card entry script
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script>
 // Initialize Firebase
 var config = {
@@ -121,9 +122,7 @@ firebase.initializeApp(config);
     specific properties and methods. *** Be careful not to override
     the names defined in the firebase api.
 */
-
 var database = firebase.database();
-
 var refCards = database.ref("cards");
 
 // Adds a card to the database
@@ -135,8 +134,7 @@ database.addCard = function(card) {
 
 // TODO: listen for changes in the cards data
 refCards.on("value", function(snapCards) {
-
-  var cards = snapCards.toJSON();
+  table.render(snapCards.toJSON());
 });
 
 
@@ -180,11 +178,43 @@ var form = {
 /*
     ----- table -----
 
-    Container for properties and methods for displaying cards.
+    Container for properties and methods for displaying cards data.
 */
+var table = {
+  // Creates a row and returns it as a jquery object
+  newRow: function(card, key="") {
+    var $row = $("<tr>").attr("id", "card" + key);
+
+    // add data to row
+    $("<td>").appendTo($row).text(card.topic);
+    $("<td>").appendTo($row).text(card.front.text);
+    $("<td>").appendTo($row).text(card.back.text);
+    $("<td>").appendTo($row).text(card.author);
+    $("<td>").appendTo($row).text(card.tags);
+
+    console.log($row);
+
+    return $row;
+  },
+
+  // Renders the table
+  render: function(data) {
+
+    // table body
+    var $tbl = $("#tblCards");
+
+    // clear table 
+    $tbl.empty();
+
+    // append a row for each card
+    $.each(data, function(key) {
+      $tbl.append(table.newRow(this, key));
+      console.log(key, this);
+    });
+  }
+};
 
 $(document).ready(function() {
-
     // listen for submit button click on add card form
     $("#btnSubmit").on("click", function(event) {
         event.preventDefault();
