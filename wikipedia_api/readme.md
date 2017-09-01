@@ -8,7 +8,7 @@ are displayed along with links to the articles.
 
 ## Using the wpAPI Object
 Include the code for the wpAPI object in wpAPI.js. Make a call to the
-ajaxArticleSearch metho passing the search string and a callback. The
+ajaxArticleSearch method passing the search string and a callback. The
 first argument passed to the callback is an array of article objects.
 (see table)
 
