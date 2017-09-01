@@ -2,7 +2,7 @@
 Small object for making an ajax request to the Wikipedia.org API.
 
 ## Demo
-Opon wiki_api_test.html in a browser and try searching for terms. A
+Open wiki_api_test.html in a browser and try searching for terms. A
 list of up to 10 extracts from Wikipedia pages matching the search
 are displayed along with links to the articles.
 
