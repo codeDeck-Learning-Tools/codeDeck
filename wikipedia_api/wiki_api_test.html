@@ -11,17 +11,22 @@
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
-  <title>codeDeck Card Review</title>
+  <title>codeDeck Home Page</title>
 </head>
 
 <body>
-<!-- jquery ui required for flipper -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="assets/javascript/flipper/styles.js"></script>
-<script src="assets/javascript/flipper/jquery-flipper.js"></script>
-<script src="assets/javascript/jquery.flip.js"></script>
-<script src="assets/javascript/flipDemo.js"></script>
+  <div class="container">
+    <div>
+      <h1>codeDeck</h1>
+      <h3>Stack the odds in your favor!</h3>
+    </div>
+    <label for="txtSearchTerms">Search: </label>
+    <input type="text" id="txtSearchTerms">
+    <button id="btnGo">Go</button>
+    <div id="searchRes"></div>
 
+  </div>
+  <script src="wpAPI.js"></script>
 </body>
 
 </html>
