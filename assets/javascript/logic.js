@@ -2,7 +2,7 @@
 	deck.js
 	-----------------------------------------------------------------
 	Contains code to initialize firebase, retrieve the data, deck object
-	code, and code to test the deck object (commented out).
+	code, function for rendering a card, and code for testing.
 
 	This module is not intended to be included in production. Rather, 
 	the code required should be copied to logic.js or another
@@ -13,7 +13,8 @@
 		1 Initialize Firebase
 		2 databse
 		3 deck object
-		4 test code
+		4 Render card functions
+		5 test code
 
 	Initial version by JD.
 */
@@ -129,8 +130,70 @@ var deck = ( function () {
 } )();
 
 /*
+	Functions for rendering a card
+	--------------------------------------------------------------- */
+// Returns an html element for a card
+function getCardElement ( front, back ) {
+    // card height in pixels
+    var cardHeight = 250;
+
+    // jquery objects for elements
+    var $cardDiv = $( '<div>' );
+    var $front = $( '<div>' );
+    var $back = $( '<div>' );
+
+    // height must be fixed else text overflow problems may occur
+    $cardDiv
+        .append( [$front, $back] )
+        .css( 'height', cardHeight + 'px' );
+
+    // give each side the panel class from bootstrap
+    $front.addClass( 'panel panel-default front' );
+    $back.addClass( 'panel panel-default back' );
+
+    // add a panel-body with text for each side of card
+    $( '<div>' )
+        .text( front )
+        .addClass( 'panel-body' )
+        .appendTo( $front );
+    $( '<div>' )
+        .text( back )
+        .addClass( 'panel-body' )
+        .appendTo( $back );
+
+    // add flip behavior to card
+    $cardDiv.append( [$front, $back] ).flip( {
+
+        // setting for flip animation
+        // front: 			".front", // jquery selector for front
+        // back: 			".back", // jquery sel for back
+        'reverse': true, 	// card flips back in opposit direction
+        'speed': 300,	// speed in ms
+        'forceHeight': true	// forces height of card to that of container
+    } );
+
+    return $cardDiv.get();
+}
+
+// Renders a card in the element with an id = containerId. Reterns
+// the container element
+function renderCard ( containerId, card, reverse = false ) {
+    var cardEl;
+    if ( reverse ) {
+        // swap front and back parameters to reverse the card
+        cardEl = getCardElement( card.back.text, card.front.text );
+    } else {
+        // get card in standard (not reversed) configuration
+        cardEl = getCardElement( card.front.text, card.back.text );
+    }
+    // append the card to the container and return the element
+    var container = $( '#' + containerId ).append( cardEl ).get();
+    return container;
+}
+
+/*
 	Test Code
-	---------------------------------------------------------------- */
+	--------------------------------------------------------------- */
 // renders each card in arrCards in the element with id = colId
 function renderColumn ( colId, arrCards ) {
     $.each( arrCards, function () {
@@ -171,106 +234,7 @@ database.getCards(function() {
 });
 */
 
-/*
-    Contains two functions to be added to logic.js or the appropriate
-    file for production. Code for testing at the bottom.
-
-    Contents:
-        1   ajaxWikiExtracts function
-        2   getExtractElement function
-        3   test code
-
-    Example element returned by getExtracts:     
-    <div>
-        <a href="https://en.wikipedia.org/wiki/Code%20review">
-            Code review
-        </a>
-        <p>Code review is systematic examination (sometimes referred 
-            to as peer review) of computer source code. It is intended
-            to find mistakes overlooked in software development, 
-            improving the overall quality
-            of...</p>
-    </div>
-*/
-
-/*
-    ajaxWikiExtracts
-    ----------------
-    Makes an AJAX request to the the Wikipedia API.
-
-    Parameters:
-        q:       type string   - search term or terms
-        success: type function - callback for ajax response
-*/
-function ajaxWikiExtracts ( q, success ) {
-    var apiUrl = 'https://en.wikipedia.org/w/api.php';
-    $.ajax( {
-        'url': apiUrl,
-        'dataType': 'jsonp',
-
-        // parameters to configure the response
-        'data': {
-            'action': 'query',
-            'format': 'json',
-
-            // generator paramters. search for titles or 
-            // content that match q. 
-            'generator': 'search',
-            'gsrsearch': q,
-            'gsrnamespace': 0,
-            'gsrlimit': 10, // pages returned. max is 50.
-
-            // parameters for extracts
-            'prop': 'extracts',
-            'exchars': 200, // 1,200 is the maximum
-            'exlimit': 'max', // number of extracts returned
-            'exintro': true, // only return text before section
-            'explaintext': true // return plain text
-        },
-
-        // success function passed to method
-        'success': function ( response ) {
-            // console.log("response received");
-            var articles = [];
-
-            $.each( response.query.pages, function () {
-                var url = encodeURI(
-                    'https://en.wikipedia.org/wiki/' + this.title );
-                articles.push( {
-                    'title': this.title,
-                    'text': this.extract,
-                    'url': url
-                } );
-            } );
-            success( articles );
-        },
-        'error': function ( err ) {
-            console.log( 'wpAPI Error:', err );
-        }
-    } );
-}
-
-// Returns html element for an extract object.
-function getExtractElement ( extract ) {
-    var $containerDiv = $( '<div>' );
-    var $link = $( '<a>' );
-    var $extract = $( '<p>' );
-
-    // set the href of the link and use the title for the
-    // text of the link
-    $link.attr( 'href', extract.url ).text( extract.title );
-
-    // text of extract goes in a p element
-    $extract.text( extract.text );
-
-    // append content and return the container element
-    return $containerDiv.append( [$link, $extract] ).get();
-}
-
-/*
-    Test Code
-    -------------------------------------------------------- */
-
+// test to display a card
 var card = {
     'author': 'JD',
     'back': {
@@ -282,35 +246,32 @@ var card = {
     'tags': 'git code develop fetch',
     'topic': 'git'
 };
+/* var cardEl = getCardElement(card.front.text, card.back.text);
+$("#card-container")
+	.append(cardEl); */
 
-// test ajaxWikiExtracts
+// test normal front first configuration
+// renderCard("card-container", card);
 
-ajaxWikiExtracts( card.tags, function ( extracts ) {
-    console.log( extracts );
+// test reversed (back first) config.
+// $("#card-container").css("height", "250px");
+renderCard( 'card-container', card, true );
 
-    // render the extracts
-    var $targetDiv = $( '#wikiLinks' );
-    $.each( extracts, function () {
-        $( getExtractElement( this ) ).appendTo( $targetDiv );
-    } );
+// set additional properties on card
+$( '.front, .back' ).css( {
+    'padding-top': '2em'
 } );
+
+// add some margin above the card
+$( '#card-container' ).css( 'margin-top', '2em' );
 
 $( '#signIn' ).on( 'click', click );
 
+// Sign in with Google authentication
 // First, we perform the signInWithRedirect.
 // Creates the provider object.
-function click ( ) {
-    // Initialize Firebase
-    // var config = {
-    //     'apiKey': 'AIzaSyCAGvW613Tfgyi6e7a8e1U1Nh45tSvPjCo',
-    //     'authDomain': 'codedeck-17e00.firebaseapp.com',
-    //     'databaseURL': 'https://codedeck-17e00.firebaseio.com',
-    //     'projectId': 'codedeck-17e00',
-    //     'storageBucket': 'codedeck-17e00.appspot.com',
-    //     'messagingSenderId': '82313729151'
-    // };
-    // firebase.initializeApp( config );
 
+function click ( ) {
     var provider = new firebase.auth.GoogleAuthProvider();
 
     // You can add additional scopes to the provider:
