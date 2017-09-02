@@ -235,17 +235,17 @@ database.getCards(function() {
 */
 
 // test to display a card
-var card = {
-    'author': 'JD',
-    'back': {
-        'text': 'Get remote data from the remote repository for ALL…ry without merging it with the working directory.'
-    },
-    'front': {
-        'text': 'git fetch --all'
-    },
-    'tags': 'git code develop fetch',
-    'topic': 'git'
-};
+// var card = {
+//     'author': 'JD',
+//     'back': {
+//         'text': 'Get remote data from the remote repository for ALL…ry without merging it with the working directory.'
+//     },
+//     'front': {
+//         'text': 'git fetch --all'
+//     },
+//     'tags': 'git code develop fetch',
+//     'topic': 'git'
+// };
 /* var cardEl = getCardElement(card.front.text, card.back.text);
 $("#card-container")
 	.append(cardEl); */
@@ -282,13 +282,13 @@ function click ( ) {
         localStorage.setItem( 'token', token );
         // The signed-in user info.
         var user = result.user;
-        localStorage.setItem( 'user', user );
+        localStorage.setItem( 'user', JSON.stringify( user ) );
 
         /**
          * This is where you will forward the user onto the next
          * page.
          */
-        document.location = '/deck.html';
+        document.location = 'deck.html';
     } ).catch( function errorCB ( error ) {
         alert( 'Authentication failed.' );
         console.log( error );
