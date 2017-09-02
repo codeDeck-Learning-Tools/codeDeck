@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-  <title>codeDeck Review</title>
+  <title>codeDeck Sign-On</title>
 </head>
 
 <body>
@@ -32,78 +32,64 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="index.html">Our Story</a></li>
           <li><a href="#">Contact</a></li>
-          <li><a href="deck.html">Decks</a></li>
+          <li><a href="sign.html">Sign On</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-6">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>Cards for Review Generate Here</strong></h3>
+            <h3 class="panel-title"><strong>Authentication Details</strong></h3>
           </div>
 
           <div class="panel-body">
             <form>
-              <div>
-                <p>
-                  Card Reviewer
-                </p>
-              </div>
-            </form>
-          </div>
 
+              <div>
+                <label for="first-name">First Name: </label>
+                <input id="first-name" class="form-control" type="text" spellcheck="false" required>
+              </div>
+
+              <div>
+                <label for="last-name">Last Name: </label>
+                <input id="last-name" class="form-control" type="text" spellcheck="false" required>
+              </div>
+
+              <div>
+                <label for="email">Email: </label>
+                <input id="email" class="form-control" type="text" spellcheck="false" required>
+              </div>
+
+              <br>
+
+              <!-- If Authenticated, go to deck.html -->
+              <div>
+                <button class="btn btn-primary" type="submit" id="submit-info">Submit</button>
+              </div>
+
+              <!-- Float Left in CSS, side by side sign in buttons -->
+
+              <div>
+                <button class="btn btn-primary" type="google" id="submit-info">Google Sign Placeholder</button>
+              </div>
+
+            </form>
+
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong>Feature Here: Hint</strong></h3>
-          </div>
-
-          <div class="panel-body">
-            <form>
-              <div>
-                <p>
-                  All the Wikipedia
-                </p>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong>Feature Here: Adsense?</strong></h3>
-          </div>
-
-          <div class="panel-body">
-            <form>
-              <div>
-                <p>
-                  All the Ads
-                </p>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 
 </body>
 
