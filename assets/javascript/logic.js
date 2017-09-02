@@ -49,6 +49,10 @@ database.getCards = function ( callback ) {
 /*
     Authentication code
     --------------------------------------------------------------- */
+
+// Sign in with Google authentication
+// First, we perform the signInWithRedirect.
+// Creates the provider object.
 function click ( ) {
     var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -73,6 +77,8 @@ function click ( ) {
     } );
 };
 
+// set an event listener on the signon button
+$( '#signIn' ).on( 'click', click );
 /*
     deck
     -----------------------------------------------------------------
@@ -271,10 +277,4 @@ $( '.front, .back' ).css( {
 // add some margin above the card
 $( '#card-container' ).css( 'margin-top', '2em' );
 
-$( '#signIn' ).on( 'click', click );
 */
-
-// Sign in with Google authentication
-// First, we perform the signInWithRedirect.
-// Creates the provider object.
-
