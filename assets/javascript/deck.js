@@ -19,19 +19,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var refCards = database.ref("cards");
 
-// initialize deck with cards from the database
-refCards.once("value", function(snapshot) {
-	snapshot.forEach(function(childSnap) {
-		deck.addCard(childSnap.val());
-	});
-	console.log(deck.getCards());
-
-}, function(err) {
-	console.log("Firebase Error:", err);
-});
-
-
-
 
 /*
 	deck
@@ -39,6 +26,27 @@ refCards.once("value", function(snapshot) {
 
 	Function for a flash card deck.
 */
+
+// Adds cards in a firebase database to deck.
+function loadCards(fbDatabaseRef, deck) {
+	// Parameters:
+	// fbDatabase: firebaset database reference
+	// deck:       flash card deck
+
+	// get a snapshot from the firebase reference
+	// that points to the deck to use
+	fbDatabaseRef.once("value", function(snapshot) {
+
+		snapshot.forEach(function(childSnap) {
+			// add each child (card object) to the deck
+			deck.addCard(childSnap.val());
+		});
+		console.log(deck.getAllCards());
+	}, function(err) {
+		console.log("Error loading cards from database:", err);
+	});
+
+}
 
 var deck = (function() {
 	var cards = [];
@@ -53,7 +61,7 @@ var deck = (function() {
 	addCard: function(card) {
 		cards.push(card);
 	},
-	getCards: function() {
+	getAllCards: function() {
 		return cards;
 	},
 
@@ -67,3 +75,8 @@ var deck = (function() {
 
 	};
 })();
+
+/*
+	Test Code
+	----------------------------------------------------------------*/
+loadCards(refCards, deck);
