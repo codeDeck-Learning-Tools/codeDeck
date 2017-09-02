@@ -132,64 +132,65 @@ var deck = ( function () {
 /*
 	Functions for rendering a card
 	--------------------------------------------------------------- */
-// Returns an html element for a card
-function getCardElement ( front, back ) {
-    // card height in pixels
-    var cardHeight = 250;
+	// Returns an html element for a card
+	function getCardElement(front, back) {
+		
+		// card height in pixels
+		var cardHeight = 250;
 
-    // jquery objects for elements
-    var $cardDiv = $( '<div>' );
-    var $front = $( '<div>' );
-    var $back = $( '<div>' );
+		// jquery objects for elements
+		var $cardDiv = $("<div>");
+		var $front = $("<div>");
+		var $back = $("<div>");
 
-    // height must be fixed else text overflow problems may occur
-    $cardDiv
-        .append( [$front, $back] )
-        .css( 'height', cardHeight + 'px' );
+		// height must be fixed else text overflow problems may occur
+		$cardDiv
+			.append([$front, $back])
+			.css("height", cardHeight + "px");
 
-    // give each side the panel class from bootstrap
-    $front.addClass( 'panel panel-default front' );
-    $back.addClass( 'panel panel-default back' );
+		// give each side the panel class from bootstrap
+		$front.addClass("panel panel-default front");
+		$back.addClass("panel panel-default back");
 
-    // add a panel-body with text for each side of card
-    $( '<div>' )
-        .text( front )
-        .addClass( 'panel-body' )
-        .appendTo( $front );
-    $( '<div>' )
-        .text( back )
-        .addClass( 'panel-body' )
-        .appendTo( $back );
+		// add a panel-body with text for each side of card
+		$("<div>")
+			.text(front)
+			.addClass("panel-body")
+			.appendTo($front);
+		$("<div>")
+			.text(back)
+			.addClass("panel-body")
+			.appendTo($back);
 
-    // add flip behavior to card
-    $cardDiv.append( [$front, $back] ).flip( {
+		// add flip behavior to card
+		$cardDiv.append([$front, $back]).flip({
 
-        // setting for flip animation
-        // front: 			".front", // jquery selector for front
-        // back: 			".back", // jquery sel for back
-        'reverse': true, 	// card flips back in opposit direction
-        'speed': 300,	// speed in ms
-        'forceHeight': true	// forces height of card to that of container
-    } );
+			// setting for flip animation
+			// front: 			".front", // jquery selector for front
+			// back: 			".back", // jquery sel for back
+			reverse: 		true, 	// card flips back in opposit direction
+			speed: 			300,	// speed in ms
+			forceHeight: 	true	// forces height of card to that of container
+		});
 
-    return $cardDiv.get();
-}
+		return $cardDiv.get();
+	}
 
-// Renders a card in the element with an id = containerId. Reterns
-// the container element
-function renderCard ( containerId, card, reverse = false ) {
-    var cardEl;
-    if ( reverse ) {
-        // swap front and back parameters to reverse the card
-        cardEl = getCardElement( card.back.text, card.front.text );
-    } else {
-        // get card in standard (not reversed) configuration
-        cardEl = getCardElement( card.front.text, card.back.text );
-    }
-    // append the card to the container and return the element
-    var container = $( '#' + containerId ).append( cardEl ).get();
-    return container;
-}
+	// Renders a card in the element with an id = containerId. Reterns
+	// the container element
+	function renderCard(containerId, card, reverse=false) {
+		var cardEl;
+		if (reverse) {
+			// swap front and back parameters to reverse the card
+			cardEl = getCardElement(card.back.text, card.front.text);
+		} else {
+			// get card in standard (not reversed) configuration
+			cardEl = getCardElement(card.front.text, card.back.text);
+		}
+		// append the card to the container and return the element
+		var container = $("#" + containerId).append(cardEl).get();
+		return container;
+	}
 
 /*
 	Test Code
@@ -236,61 +237,31 @@ database.getCards(function() {
 
 // test to display a card
 var card = {
-    'author': 'JD',
-    'back': {
-        'text': 'Get remote data from the remote repository for ALL…ry without merging it with the working directory.'
+    author: "JD",
+    back: {
+        text: "Get remote data from the remote repository for ALL…ry without merging it with the working directory."
     },
-    'front': {
-        'text': 'git fetch --all'
+    front: {
+        text: "git fetch --all"
     },
-    'tags': 'git code develop fetch',
-    'topic': 'git'
+    tags: "git code develop fetch",
+    topic: "git"
 };
-/* var cardEl = getCardElement(card.front.text, card.back.text);
+/*var cardEl = getCardElement(card.front.text, card.back.text);
 $("#card-container")
-	.append(cardEl); */
+	.append(cardEl);*/
 
 // test normal front first configuration
 // renderCard("card-container", card);
 
 // test reversed (back first) config.
 // $("#card-container").css("height", "250px");
-renderCard( 'card-container', card, true );
+renderCard("card-container", card, true);
 
 // set additional properties on card
-$( '.front, .back' ).css( {
-    'padding-top': '2em'
-} );
+$(".front, .back").css({
+	"padding-top": "2em"
+});
 
 // add some margin above the card
-$( '#card-container' ).css( 'margin-top', '2em' );
-
-$( '#signIn' ).on( 'click', click );
-
-// Sign in with Google authentication
-// First, we perform the signInWithRedirect.
-// Creates the provider object.
-
-function click ( ) {
-    var provider = new firebase.auth.GoogleAuthProvider();
-
-    // You can add additional scopes to the provider:
-    provider.addScope( 'email' );
-
-    firebase.auth().signInWithPopup( provider ).then( function siPop ( result ) {
-        var token = result.credential.accessToken;
-        localStorage.setItem( 'token', token );
-        // The signed-in user info.
-        var user = result.user;
-        localStorage.setItem( 'user', user );
-
-        /**
-         * This is where you will forward the user onto the next
-         * page.
-         */
-        document.location = '/deck.html';
-    } ).catch( function errorCB ( error ) {
-        alert( 'Authentication failed.' );
-        console.log( error );
-    } );
-};
+$("#card-container").css("margin-top", "2em");
