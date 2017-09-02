@@ -1,3 +1,23 @@
+/*
+	deck.js
+	-----------------------------------------------------------------
+	Contains code to initialize firebase, retrieve the data, deck object
+	code, and code to test the deck object (commented out).
+
+	This module is not intended to be included in production. Rather, 
+	the code required should be copied to logic.js or another
+	appropriate file. Some of the firebase code is likely redundant or
+	may require revision for the final application.
+
+	Contents
+		1 Initialize Firebase
+		2 databse
+		3 deck object
+		4 test code
+
+	Initial version by JD.
+*/
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCAGvW613Tfgyi6e7a8e1U1Nh45tSvPjCo",
