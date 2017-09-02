@@ -20,14 +20,14 @@
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyCAGvW613Tfgyi6e7a8e1U1Nh45tSvPjCo",
-    authDomain: "codedeck-17e00.firebaseapp.com",
-    databaseURL: "https://codedeck-17e00.firebaseio.com",
-    projectId: "codedeck-17e00",
-    storageBucket: "",
-    messagingSenderId: "82313729151"
+    'apiKey': 'AIzaSyCAGvW613Tfgyi6e7a8e1U1Nh45tSvPjCo',
+    'authDomain': 'codedeck-17e00.firebaseapp.com',
+    'databaseURL': 'https://codedeck-17e00.firebaseio.com',
+    'projectId': 'codedeck-17e00',
+    'storageBucket': '',
+    'messagingSenderId': '82313729151'
 };
-firebase.initializeApp(config);
+firebase.initializeApp( config );
 
 /*
     ----- database -----
@@ -37,36 +37,34 @@ firebase.initializeApp(config);
     the names defined in the firebase api.
 */
 var database = firebase.database();
-database.refCards = database.ref("cards");
+database.refCards = database.ref( 'cards' );
 
 // Adds cards in database to deck
-database.getCards = function(callback) {
-	// 	Parameters:
-	//		callback: 	function to call when cards succesfully
-	//							returned from database
+database.getCards = function ( callback ) {
+    // 	Parameters:
+    //		callback: 	function to call when cards succesfully
+    //							returned from database
 
-	// TODO: check sessionStorage for deck
+    // TODO: check sessionStorage for deck
 
-	// get a snapshot from the firebase reference
-	// that points to the deck to use
-	database.refCards.once("value", function(snapshot) {
-		snapshot.forEach(function(childSnap) {
+    // get a snapshot from the firebase reference
+    // that points to the deck to use
+    database.refCards.once( 'value', function ( snapshot ) {
+        snapshot.forEach( function ( childSnap ) {
+            // add each child (card object) to the deck
+            deck.addCard( childSnap.val() );
+        } );
 
-			// add each child (card object) to the deck
-			deck.addCard(childSnap.val());
-		});
+        // TODO: save deck to sessionStorage
 
-		// TODO: save deck to sessionStorage
+        // run callback function
+        callback();
 
-		// run callback function
-		callback();
-
-	// log error with firebase request
-	}, function(err) {
-		console.log("Error loading cards from database:", err);
-	});
-}
-
+        // log error with firebase request
+    }, function ( err ) {
+        console.log( 'Error loading cards from database:', err );
+    } );
+};
 
 /*
 	deck
@@ -74,70 +72,70 @@ database.getCards = function(callback) {
 
 	Object for a flash card deck. May only have one deck at a time.
 */
-var deck = (function() {
-	var allCards = [];
-	var cards = [];	
-	var discarded = [];
+var deck = ( function () {
+    var allCards = [];
+    var cards = [];
+    var discarded = [];
 
-	return {
-		// --- public methods --- //
+    return {
+        // --- public methods --- //
 
-		// adds a card to all cards and cards arrays
-		addCard: function(card) {
-			allCards.push(card);
-			cards.push(card);
-		},
-		// Returns array containing all card objects in deck
-		getAllCards: function() {
-			return allCards;
-		},
+        // adds a card to all cards and cards arrays
+        'addCard': function ( card ) {
+            allCards.push( card );
+            cards.push( card );
+        },
+        // Returns array containing all card objects in deck
+        'getAllCards': function () {
+            return allCards;
+        },
 
-		// Returns array containing current cards (not discarded)
-		getCurrentCards: function() {
-			return cards;
-		},
+        // Returns array containing current cards (not discarded)
+        'getCurrentCards': function () {
+            return cards;
+        },
 
-		// Pops a card from the cards array and returns it.
-		popCard: function() {
-			var poppedCard = cards.pop();
-			discarded.push(poppedCard);
-			return poppedCard;
-		},
+        // Pops a card from the cards array and returns it.
+        'popCard': function () {
+            var poppedCard = cards.pop();
+            discarded.push( poppedCard );
+            return poppedCard;
+        },
 
-		// Sets cards to discarded and empties discarded array.
-		reset: function() {
-			cards = allCards;
-			discarded = [];
-		},
+        // Sets cards to discarded and empties discarded array.
+        'reset': function () {
+            cards = allCards;
+            discarded = [];
+        },
 
-		// sets the allCards array and reset cards
-		setCards: function(arrCards) {
-			allCards = arrCards;
-			this.reset();
-		},
+        // sets the allCards array and reset cards
+        'setCards': function ( arrCards ) {
+            allCards = arrCards;
+            this.reset();
+        },
 
-		// Randomizes the order of the cards. Returns true if succesful.
-		shuffle: function() {
-			// do nothing and log an error if cards aren't set
-			if ( cards.length === 0 ) {
-				console.log("deck error: No cards to shuffle.");
-				return false;
-			}
-			// shuffle array of cards in place
-			cards.sort(function (a,b) { return 0.5 - Math.random() });
-			return true;
-		}
-	};
-})();
+        // Randomizes the order of the cards. Returns true if succesful.
+        'shuffle': function () {
+            // do nothing and log an error if cards aren't set
+            if ( cards.length === 0 ) {
+                console.log( 'deck error: No cards to shuffle.' );
+                return false;
+            }
+            // shuffle array of cards in place
+            cards.sort( function ( a, b ) { return 0.5 - Math.random(); } );
+            return true;
+        }
+    };
+} )();
 
 /*
 	Test Code
-	----------------------------------------------------------------*/
+	---------------------------------------------------------------- */
 // renders each card in arrCards in the element with id = colId
-function renderColumn(colId, arrCards) {
-	$.each(arrCards, function() {
-		$("<p>").text(this.front.text).appendTo("#" + colId);
-	})
+function renderColumn ( colId, arrCards ) {
+    $.each( arrCards, function () {
+        $( '<p>' ).text( this.front.text ).appendTo( '#' + colId );
+    } );
 }
 /*
 // teset deck.shuffle();
