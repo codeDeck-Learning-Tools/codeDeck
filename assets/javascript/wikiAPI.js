@@ -1,6 +1,23 @@
 /*
-    Move the code in the ajaxWikiExtracts function into
-    logic.js when ready. -John D.
+    Contains two functions to be added to logic.js or the appropriate
+    file for production. Code for testing at the bottom.
+
+    Contents:
+        1   ajaxWikiExtracts function
+        2   getExtractElement function
+        3   test code
+
+    Example element returned by getExtracts:     
+    <div>
+        <a href="https://en.wikipedia.org/wiki/Code%20review">
+            Code review
+        </a>
+        <p>Code review is systematic examination (sometimes referred 
+            to as peer review) of computer source code. It is intended
+            to find mistakes overlooked in software development, 
+            improving the overall quality
+            of...</p>
+    </div>
 */
 
 /*
@@ -13,7 +30,6 @@
         success: type function - callback for ajax response
 */
 function ajaxWikiExtracts(q, success) {
-    console.log("ajaxWikiExtracts called");
     var apiUrl = 'https://en.wikipedia.org/w/api.php';
     $.ajax({
         url: apiUrl,
@@ -61,12 +77,49 @@ function ajaxWikiExtracts(q, success) {
     });    
 }
 
+// Returns html element for an extract object.
+function getExtractElement(extract) {
+    var $containerDiv = $("<div>");
+    var $link = $("<a>");
+    var $extract = $("<p>");
+
+    // set the href of the link and use the title for the
+    // text of the link
+    $link.attr("href", extract.url).text(extract.title);
+
+    // text of extract goes in a p element
+    $extract.text(extract.text);
+
+    // append content and return the container element
+    return $containerDiv.append([$link, $extract]).get();
+}
+
 /*
     Test Code
     -------------------------------------------------------- */
 
+var card = {
+    author: "JD",
+    back: {
+        text: "Get remote data from the remote repository for ALL…ry without merging it with the working directory."
+    },
+    front: {
+        text: "git fetch --all"
+    },
+    tags: "git code develop fetch",
+    topic: "git"
+};
+
 // test ajaxWikiExtracts
 
-ajaxWikiExtracts("git develop code", function(extracts) {
+ajaxWikiExtracts(card.tags, function(extracts) {
     console.log(extracts);
+
+    // render the extracts
+    var $targetDiv = $("#wikiLinks");
+    $.each(extracts, function() {
+        $(getExtractElement(this)).appendTo($targetDiv);
+    });
 });
+
+
