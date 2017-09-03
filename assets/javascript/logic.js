@@ -49,6 +49,7 @@ database.getCards = function ( callback ) {
 /*
     Authentication code
     --------------------------------------------------------------- */
+$( '#signIn' ).on( 'click', click );
 function click ( ) {
     var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -72,6 +73,25 @@ function click ( ) {
         console.log( error );
     } );
 };
+
+/*
+ Sign-in
+    -----------------------------------------------------------------
+
+    Checking for all requirements prior to passing to deck.html
+*/
+
+$( '#submit-info' ).on( 'click', pass );
+function pass () {
+    if (
+        $( '#first-name' ).val() &&
+        $( '#last-name' ).val() &&
+        $( '#email' ).val() ) {
+        document.location = 'deck.html';
+    } else {
+        alert( 'Please complete required fields.' );
+    }
+}
 
 /*
     deck
@@ -173,8 +193,8 @@ function getCardElement ( front, back ) {
         // setting for flip animation
         // front:           ".front", // jquery selector for front
         // back:            ".back", // jquery sel for back
-        'reverse': true,    // card flips back in opposit direction
-        'speed': 300,   // speed in ms
+        'reverse': true, // card flips back in opposit direction
+        'speed': 300, // speed in ms
         'forceHeight': true // forces height of card to that of container
     } );
 
@@ -271,10 +291,8 @@ $( '.front, .back' ).css( {
 // add some margin above the card
 $( '#card-container' ).css( 'margin-top', '2em' );
 
-$( '#signIn' ).on( 'click', click );
 */
 
 // Sign in with Google authentication
 // First, we perform the signInWithRedirect.
 // Creates the provider object.
-
