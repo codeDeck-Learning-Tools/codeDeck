@@ -9,6 +9,29 @@
   
   <title>codeDeck Select</title>
 
+  <script>
+      /**
+       * Be sure they are logged in
+       */
+      var user = localStorage.getItem('user');
+      
+      try{
+        user = JSON.parse(user);
+      } catch (e) {
+        //Handle error
+      }
+      
+      if(!user.email){
+        localStorage.setItem('alert', JSON.stringify({
+          'type': 'error', 
+          'title': 'Login Error', 
+          'text': 'You must be logged into view this page.'}
+        ));
+  
+        document.location = 'sign.html';
+      }
+    </script>
+
 </head>
 
 <body>

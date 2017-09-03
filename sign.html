@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.css">
 
   <title>codeDeck Sign-On</title>
 </head>
@@ -93,67 +94,101 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="assets/javascript/firebase.js"></script>
 
   <script>
-    $('#signIn').on('click', click);
+    
+$( '#signIn' ).on( 'click', click );
+$( '#submit-info' ).on( 'click', pass );
 
-    function click() {
+/**
+ * Check for signin errors
+ */
+var alertMessage = localStorage.getItem('alert');
+
+if(alertMessage){
+    try {
+        alertMessage = JSON.parse(alertMessage);
+        new PNotify(alertMessage);
+        localStorage.removeItem('alert');
+    } catch (e) {
+        new PNotify({
+            type: 'error',
+            title: 'Login Error',
+            text: 'There was an unknown error during login.'
+        })
+    }
+}
+
+function click () {
       var provider = new firebase.auth.GoogleAuthProvider();
 
       // You can add additional scopes to the provider:
-      provider.addScope('email');
+      provider.addScope( 'email' );
 
-      firebase.auth().signInWithPopup(provider).then(function siPop(result) {
-        var token = result.credential.accessToken;
-        localStorage.setItem('token', token);
-        // The signed-in user info.
-        var user = result.user;
-        localStorage.setItem('user', JSON.stringify(user));
+      firebase.auth().signInWithPopup( provider ).then( function siPop ( result ) {
+            var token = result.credential.accessToken;
+            localStorage.setItem( 'token', token );
+            // The signed-in user info.
+            var user = result.user;
+            localStorage.setItem( 'user', JSON.stringify( {
+                email: user.email,
+                name: user.displayName
+            } ) );
+            
 
-        // retrive the cards from the database
-        database.getCards(function (cards) {
-          if (cards && Array.isArray(cards)) {
-            localStorage.setItem('cards', JSON.stringify(cards));
-            document.location = 'deck.html';
-          }
-        });
-      }).catch(function errorCB(error) {
-        alert('Authentication failed.');
-        console.log(error);
-      });
-    };
+            // retrive the cards from the database
+            database.getCards( function ( cards ) {
+                if ( cards && Array.isArray( cards ) ) {
+                    localStorage.setItem( 'cards', JSON.stringify( cards ) );
+                    document.location = 'deck.html';
+                }
+    } );
+      } ).catch( function errorCB ( error ) {
+          new PNotify({
+            title: "Login Error",
+            text: "Google authentication failed.",
+            type: "error"
+          });
+      } );
+};
 
-    /*
-     Sign-in
-        -----------------------------------------------------------------
+/*
+Sign-in
+  -----------------------------------------------------------------
 
-        Checking for all requirements prior to passing to deck.html
-    */
-
-    $('#submit-info').on('click', pass);
-
-    function pass() {
+  Checking for all requirements prior to passing to deck.html
+*/
+function pass () {
       if (
-        $('#first-name').val() &&
-        $('#last-name').val() &&
-        $('#email').val()) {
+        $( '#first-name' ).val() &&
+        $( '#last-name' ).val() &&
+        $( '#email' ).val() ) 
+        {
+              // get cards from firebase
+              database.getCards( function ( cards ) {
+                  if ( cards && Array.isArray( cards ) ) {
+                      // store cards in local storage
+                      localStorage.setItem( 'cards', JSON.stringify( cards ) );
+                      localStorage.setItem('user', JSON.stringify({
+                          email: $( '#email' ).val(),
+                          name: $( '#first-name' ).val() + ' ' + $( '#last-name' ).val()
+                      }))
 
-        // get cards from firebase
-        database.getCards(function (cards) {
-          if (cards && Array.isArray(cards)) {
-            // store cards in local storage
-            localStorage.setItem('cards', JSON.stringify(cards));
-
-            // navigate to deck.html
-            document.location = 'deck.html';
-          }
-        });
+                      // navigate to deck.html
+                      document.location = 'deck.html';
+                  }
+              } );
       } else {
-        alert('Please complete required fields.');
+        new PNotify({
+            title: "Login Error",
+            text: "Please complete all required fields",
+            type: "error"
+          });
       }
-    }
+}
   </script>
 
 </body>
