@@ -17,6 +17,12 @@ var deck = ( function () {
             allCards.push( card );
             cards.push( card );
         },
+
+        // Returns the count (integer) of remaining cards (not discarded)
+        'cardsRemaining': function() {
+            return cards.length;
+        },
+
         // Returns array containing all card objects in deck
         'getAllCards': function () {
             return allCards;
