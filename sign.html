@@ -112,10 +112,7 @@
         var user = result.user;
         localStorage.setItem('user', JSON.stringify(user));
 
-        /**
-         * This is where you will forward the user onto the next
-         * page.
-         */
+        // retrive the cards from the database
         database.getCards(function (cards) {
           if (cards && Array.isArray(cards)) {
             localStorage.setItem('cards', JSON.stringify(cards));
@@ -143,9 +140,13 @@
         $('#last-name').val() &&
         $('#email').val()) {
 
+        // get cards from firebase
         database.getCards(function (cards) {
           if (cards && Array.isArray(cards)) {
+            // store cards in local storage
             localStorage.setItem('cards', JSON.stringify(cards));
+
+            // navigate to deck.html
             document.location = 'deck.html';
           }
         });
