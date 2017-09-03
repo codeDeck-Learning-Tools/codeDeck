@@ -32,34 +32,23 @@ deck.shuffle();
 // get the first card from the deck (pop the card)
 currentCard = deck.popCard();
 
-// track if card is flipped over
-currentCard.flipped = false;
-
 // render the card
 renderCard( cardContainerId, currentCard );
 
-// Handles click event on the card container
-function handleCardClick() {
-	// if the card has been turned over and user
-	// has gone through the deck ...
+// Handles click event on the next card button
+function handleNextCardBtn() {
+    console.log("clicked next");
+	// if the user has gone through the deck ...
 	if ( !deck.cardsRemaining() ) {
 		// ... user has gone through the deck
 		// unset current card and update view
 		currentCard = null;
 		renderEndOfDeck( cardContainerId );			
 
-	// if the card hasn't been turned over yet ...
-	} else if ( !currentCard.flipped ) {
-		// ... update the status
-		currentCard.flipped = true;
-
-	// if the card has already been flipped ...		
+	// if cards remain in the deck ...		
 	} else {
 		// ... get the next card and render it
 		currentCard = deck.popCard();
-		currentCard.flipped = false;
-
-		// render the next card
 		renderCard( cardContainerId, currentCard );
 	}
 }
@@ -69,31 +58,42 @@ function handleCardClick() {
     --------------------------------------------------------------- */
 // Returns an html element for a card
 function getCardElement ( front, back = false ) {
-    // card height in pixels
-    var cardHeight = 250;
+    // card element values
+    var cardCss = {
+        'height': '250px'
+    };
+    var btnClass = 'btn btn-primary'
+        + ' btn-sm pull-right';
 
     // jquery objects for elements
     var $cardDiv = $( '<div>' );
     var $front = $( '<div>' );
     var $back = $( '<div>' );
+    var $btn = $( '<button class="' + btnClass 
+        + '">Next</button>' );
 
     // height must be fixed else text overflow problems may occur
     $cardDiv
         .append( [$front, $back] )
-        .css( 'height', cardHeight + 'px' );
+        .css( cardCss );
 
     // give each side the panel class from bootstrap
     $front.addClass( 'panel panel-default front' );
     $back.addClass( 'panel panel-default back' );
 
     // add a panel-body with text for each side of card
+    // and a next button
+    // front
     $( '<div>' )
         .text( front )
         .addClass( 'panel-body' )
+        .append( $btn.clone() )
         .appendTo( $front );
+    // back
     $( '<div>' )
         .text( back )
         .addClass( 'panel-body' )
+        .append( $btn )
         .appendTo( $back );
 
 
@@ -105,7 +105,6 @@ function getCardElement ( front, back = false ) {
         'speed': 300, // speed in ms
         'forceHeight': true // forces height of card to that of container
     } );
-
     return $cardDiv.get();
 }
 
@@ -141,11 +140,13 @@ function renderEndOfDeck( containerId ) {
         .get();
 }
 
-
 $( document ).ready( function() {
 	if ( cards.length ) {
-
-		// Listen for click event on the card and assign handler
-		$("#" + cardContainerId).on( "click", handleCardClick );
+		// Listen for click event on the next card button
+		$( "#" + cardContainerId ).on( 'click', function( e ) {
+            if ( e.target.nodeName === 'BUTTON' ) {
+                handleNextCardBtn();
+            }
+        } );
 	}	
 } );
