@@ -98,26 +98,26 @@ function getExtractElement ( extract ) {
     Test Code
     -------------------------------------------------------- */
 
-var card = {
-    'author': 'JD',
-    'back': {
-        'text': 'Get remote data from the remote repository for ALL…ry without merging it with the working directory.'
-    },
-    'front': {
-        'text': 'git fetch --all'
-    },
-    'tags': 'git code develop fetch',
-    'topic': 'git'
-};
+// var card = {
+//     'author': 'JD',
+//     'back': {
+//         'text': 'Get remote data from the remote repository for ALL…ry without merging it with the working directory.'
+//     },
+//     'front': {
+//         'text': 'git fetch --all'
+//     },
+//     'tags': 'git code develop fetch',
+//     'topic': 'git'
+// };
 
-// test ajaxWikiExtracts
+// // test ajaxWikiExtracts
 
-ajaxWikiExtracts( card.tags, function ( extracts ) {
-    console.log( extracts );
+// ajaxWikiExtracts( card.tags, function ( extracts ) {
+//     console.log( extracts );
 
-    // render the extracts
-    var $targetDiv = $( '#wikiLinks' );
-    $.each( extracts, function () {
-        $( getExtractElement( this ) ).appendTo( $targetDiv );
-    } );
-} );
+//     // render the extracts
+//     var $targetDiv = $( '#wikiLinks' );
+//     $.each( extracts, function () {
+//         $( getExtractElement( this ) ).appendTo( $targetDiv );
+//     } );
+// } );
