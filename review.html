@@ -8,6 +8,29 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   <title>codeDeck Review</title>
+
+  <script>
+      /**
+       * Be sure they are logged in
+       */
+      var user = localStorage.getItem('user');
+  
+      try{
+        user = JSON.parse(user);
+      } catch (e) {
+        //Handle error
+      }
+      
+      if(!user.email){
+        localStorage.setItem('alert', JSON.stringify({
+          'type': 'error', 
+          'title': 'Login Error', 
+          'text': 'You must be logged into view this page.'}
+        ));
+  
+        document.location = 'sign.html';
+      }
+    </script>
 </head>
 
 <body>
@@ -101,7 +124,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="assets/javascript/deck.lib.js"></script>
 <script src="assets/javascript/review.js"></script>
-
 </body>
 
 </html>
