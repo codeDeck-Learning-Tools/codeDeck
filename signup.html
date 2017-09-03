@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+~<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,9 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
-  <title>codeDeck Select</title>
 
+  <title>codeDeck Home Page</title>
 </head>
 
 <body>
@@ -31,85 +30,62 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.html">Our Story</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong>Deck Generation Here</strong></h3>
-          </div>
 
-          <div class="panel-body">
-            <form>
-              <div>
-                <p>
-                  Select Deck
-                </p>
-              </div>
-            </form>
-          </div>
 
-        </div>
-      </div>
-    </div>
-
-    <!-- CSS Float Left for side by side -->
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong>Card Preview Generation Here</strong></h3>
-          </div>
-
-          <div class="panel-body">
-            <form>
-              <div>
-                <p>
-                  Card Preview
-                </p>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+    <div class="jumbotron">
+      <h2><strong>Stack the odds in your favor!</strong></h2>
+      <h5><strong>Interested in learning code? Overwhelmed by the amount of information to learn? We've got a tool for you! Blending the old with the new, codeDeck is an interactive educational flash card game! Try our first GIT deck, or checkout other Decks soon to come!</strong></h5>
     </div>
 
     <div class="row">
       <div class="col-lg-12">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>Feature Here: Adsense?</strong></h3>
+            <h3 class="panel-title"><strong>Give us your deets yo!</strong></h3>
           </div>
-
           <div class="panel-body">
             <form>
               <div>
-                <p>
-                  All the Ads
-                </p>
+                <label for="first-name">First Name: </label>
+                <input class="form-control" type="text" spellcheck="false" required>
+              </div>
+
+              <div>
+                <label for="last-name">Last Name: </label>
+                <input class="form-control" type="text" spellcheck="false" required>
+              </div>
+
+              <div>
+                <label for="email">Email: </label>
+                <input class="form-control" type="text" spellcheck="false" required>
+              </div>
+
+              <br>
+
+              <div>
+                <button class="btn btn-primary" type="submit" id="submit-info">Submit</button>
               </div>
             </form>
+
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/live/4.3.0/firebase.js"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-
-  <script src= "assets/javascript/logic.js"></script>
-  
 </body>
 
 </html>
