@@ -1,3 +1,24 @@
+/*
+	deck.js
+	-----------------------------------------------------------------
+	Contains code to initialize firebase, retrieve the data, deck object
+	code, function for rendering a card, and code for testing.
+
+	This module is not intended to be included in production. Rather, 
+	the code required should be copied to logic.js or another
+	appropriate file. Some of the firebase code is likely redundant or
+	may require revision for the final application.
+
+	Contents
+		1 Initialize Firebase
+		2 databse
+		3 deck object
+		4 Render card functions
+		5 test code
+
+	Initial version by JD.
+*/
+
 // Initialize Firebase
 var config = {
     'apiKey': 'AIzaSyCAGvW613Tfgyi6e7a8e1U1Nh45tSvPjCo',
@@ -47,43 +68,10 @@ database.getCards = function ( callback ) {
 };
 
 /*
-    Authentication code
-    --------------------------------------------------------------- */
+	deck
+	-----------------------------------------------------------------
 
-// Sign in with Google authentication
-// First, we perform the signInWithRedirect.
-// Creates the provider object.
-function click ( ) {
-    var provider = new firebase.auth.GoogleAuthProvider();
-
-    // You can add additional scopes to the provider:
-    provider.addScope( 'email' );
-
-    firebase.auth().signInWithPopup( provider ).then( function siPop ( result ) {
-        var token = result.credential.accessToken;
-        localStorage.setItem( 'token', token );
-        // The signed-in user info.
-        var user = result.user;
-        localStorage.setItem( 'user', JSON.stringify( user ) );
-
-        /**
-         * This is where you will forward the user onto the next
-         * page.
-         */
-        document.location = 'deck.html';
-    } ).catch( function errorCB ( error ) {
-        alert( 'Authentication failed.' );
-        console.log( error );
-    } );
-};
-
-// set an event listener on the signon button
-$( '#signIn' ).on( 'click', click );
-/*
-    deck
-    -----------------------------------------------------------------
-
-    Object for a flash card deck. May only have one deck at a time.
+	Object for a flash card deck. May only have one deck at a time.
 */
 var deck = ( function () {
     var allCards = [];
@@ -142,8 +130,8 @@ var deck = ( function () {
 } )();
 
 /*
-    Functions for rendering a card
-    --------------------------------------------------------------- */
+	Functions for rendering a card
+	--------------------------------------------------------------- */
 // Returns an html element for a card
 function getCardElement ( front, back ) {
     // card height in pixels
@@ -177,11 +165,11 @@ function getCardElement ( front, back ) {
     $cardDiv.append( [$front, $back] ).flip( {
 
         // setting for flip animation
-        // front:           ".front", // jquery selector for front
-        // back:            ".back", // jquery sel for back
-        'reverse': true,    // card flips back in opposit direction
-        'speed': 300,   // speed in ms
-        'forceHeight': true // forces height of card to that of container
+        // front: 			".front", // jquery selector for front
+        // back: 			".back", // jquery sel for back
+        'reverse': true, 	// card flips back in opposit direction
+        'speed': 300,	// speed in ms
+        'forceHeight': true	// forces height of card to that of container
     } );
 
     return $cardDiv.get();
@@ -204,45 +192,45 @@ function renderCard ( containerId, card, reverse = false ) {
 }
 
 /*
-    Test Code
-    --------------------------------------------------------------- */
+	Test Code
+	--------------------------------------------------------------- */
 // renders each card in arrCards in the element with id = colId
-// function renderColumn ( colId, arrCards ) {
-//     $.each( arrCards, function () {
-//         $( '<p>' ).text( this.front.text ).appendTo( '#' + colId );
-//     } );
-// }
+function renderColumn ( colId, arrCards ) {
+    $.each( arrCards, function () {
+        $( '<p>' ).text( this.front.text ).appendTo( '#' + colId );
+    } );
+}
 /*
 // teset deck.shuffle();
 // get cards from database and show them before the shuffle on the left
 // and after the shuffle on the right.
 database.getCards(function() {
-    renderColumn("col1", deck.getAllCards());
-    deck.shuffle();
-    renderColumn("col2", deck.getAllCards());
+	renderColumn("col1", deck.getAllCards());
+	deck.shuffle();
+	renderColumn("col2", deck.getAllCards());
 });
 */
 /*
 // test deck.popCard()
 database.getCards(function() {
-    deck.shuffle();
-    renderColumn("col1", deck.getAllCards());
-    renderColumn("col2", [deck.popCard()]);
-    console.log(deck);
+	deck.shuffle();
+	renderColumn("col1", deck.getAllCards());
+	renderColumn("col2", [deck.popCard()]);
+	console.log(deck);
 
 });
 */
 /*
 // test deck.reset()
 database.getCards(function() {
-    console.log(deck.getAllCards());
-    // pop 3 cards from the deck
-    for ( var i = 0; i < deck.getAllCards().length && i < 3; i++ ) {
-        console.log("popped card:", deck.popCard());
-    }
-    console.log(deck.getCurrentCards());
-    deck.reset();
-    console.log(deck.getCurrentCards());
+	console.log(deck.getAllCards());
+	// pop 3 cards from the deck
+	for ( var i = 0; i < deck.getAllCards().length && i < 3; i++ ) {
+		console.log("popped card:", deck.popCard());
+	}
+	console.log(deck.getCurrentCards());
+	deck.reset();
+	console.log(deck.getCurrentCards());
 });
 */
 
@@ -260,8 +248,8 @@ database.getCards(function() {
 // };
 /* var cardEl = getCardElement(card.front.text, card.back.text);
 $("#card-container")
-    .append(cardEl); */
-/*
+	.append(cardEl); */
+
 // test normal front first configuration
 // renderCard("card-container", card);
 
@@ -277,4 +265,32 @@ $( '.front, .back' ).css( {
 // add some margin above the card
 $( '#card-container' ).css( 'margin-top', '2em' );
 
-*/
+$( '#signIn' ).on( 'click', click );
+
+// Sign in with Google authentication
+// First, we perform the signInWithRedirect.
+// Creates the provider object.
+
+function click ( ) {
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    // You can add additional scopes to the provider:
+    provider.addScope( 'email' );
+
+    firebase.auth().signInWithPopup( provider ).then( function siPop ( result ) {
+        var token = result.credential.accessToken;
+        localStorage.setItem( 'token', token );
+        // The signed-in user info.
+        var user = result.user;
+        localStorage.setItem( 'user', JSON.stringify( user ) );
+
+        /**
+         * This is where you will forward the user onto the next
+         * page.
+         */
+        document.location = 'deck.html';
+    } ).catch( function errorCB ( error ) {
+        alert( 'Authentication failed.' );
+        console.log( error );
+    } );
+};
