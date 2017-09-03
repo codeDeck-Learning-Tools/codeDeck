@@ -1,3 +1,21 @@
+/*
+    review.js
+
+    File contains code to render the flash card deck and run the
+    user interaction with the cards. The first card is rendered and
+    event handler is set to handle user clicks on the card deck.
+
+    Requirements:
+        Array of cards to display must be stored in local storage 
+        under the 'cards' key.
+
+    TODO:
+        * Add animation for transition to next card.
+        * Action for user to take when end of deck is reached.
+
+    Last modified by JD on 9/3/17 at 9:30 AM.
+*/
+
 // retrieve cards array from local storage
 var cards = JSON.parse( localStorage.getItem( 'cards' ) || [] );
 
