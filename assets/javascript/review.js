@@ -16,32 +16,24 @@
     Last modified by JD on 9/3/17 at 9:30 AM.
 */
 
-// retrieve cards array from local storage
-var cards = JSON.parse( localStorage.getItem( 'cards' ) || [] );
+var cards;
 
 // ids for content containers
 var cardContainerId = "card-container";
 var wikiContainerId = "wiki-links";
+var reestDeckBtnId = "reset-deck";
 
 // active card pulled from the deck
 var currentCard;
 
-// setup the deck and shuffle
-deck.setCards( cards );
-deck.shuffle();
+// initialize the card deck
+initDeck();
 
-// get the first card from the deck (pop the card)
-currentCard = deck.popCard();
-
-// request content from wikipedia api and render it
-ajaxWikiExtracts( currentCard.tags, renderWikiContent );
-
-// render the card
-renderCard( cardContainerId, currentCard );
+// show the first card
+handleNextCardBtn();
 
 // Handles click event on the next card button
 function handleNextCardBtn() {
-    console.log("clicked next");
 	// if the user has gone through the deck ...
 	if ( !deck.cardsRemaining() ) {
 		// ... user has gone through the deck
@@ -61,6 +53,15 @@ function handleNextCardBtn() {
 	}
 }
 
+// initializes the deck object from cards in local storage
+function initDeck() {
+    // retrieve cards array from local storage
+    cards = JSON.parse( localStorage.getItem( 'cards' ) || [] );
+
+    // set the cards for the deck
+    deck.setCards( cards );
+    deck.shuffle();
+}
 /*
     Functions for rendering a card
     --------------------------------------------------------------- */
@@ -144,20 +145,12 @@ function renderEndOfDeck( containerId ) {
 
     return $("#" + containerId )
         .empty()
-        .append("<p>" + endOfDeckText + "</p>")
+        .append( "<p>" + endOfDeckText + "</p>" )
+        // reset deck button
+        .append( "<button id='" + reestDeckBtnId 
+            + "' class='btn btn-default pull-right'>Reset</button>" )
         .get();
 }
-
-$( document ).ready( function() {
-	if ( cards.length ) {
-		// Listen for click event on the next card button
-		$( "#" + cardContainerId ).on( 'click', function( e ) {
-            if ( e.target.nodeName === 'BUTTON' ) {
-                handleNextCardBtn();
-            }
-        } );
-	}	
-} );
 
 /*
     Functions for rendering the wikipedia api content
@@ -182,8 +175,6 @@ function getExtractElement ( extract ) {
 
 // Function to render the wiki articles.
 function renderWikiContent ( arrWiki ) {
-    console.log( arrWiki );
-
     $wikiContainer = $( "#" + wikiContainerId );
     $wikiContainer.empty();
 
@@ -192,3 +183,29 @@ function renderWikiContent ( arrWiki ) {
         $wikiContainer.append( getExtractElement(this) );
     } );
 }
+
+
+$( document ).ready( function() {
+
+    // if there are cards ...
+    if ( cards.length ) {
+
+        // ... listen for click events on the card container
+        $( "#" + cardContainerId ).on( 'click', function( e ) {
+            // if reset deck button is clicked
+            if ( e.target.id === reestDeckBtnId ) {
+
+                // reset the deck and shuffle
+                initDeck();
+                deck.shuffle();
+
+                // display the first card
+                handleNextCardBtn();
+
+            // if next card button is clicked ...
+            } else if ( e.target.nodeName === 'BUTTON' ) {
+                handleNextCardBtn();
+            } 
+        } );
+    }   
+} );
