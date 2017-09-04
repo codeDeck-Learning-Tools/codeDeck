@@ -1,13 +1,13 @@
 /*
     review.js
 
-    File contains code to render the flash card deck and run the
-    user interaction with the cards. The first card is rendered and
-    event handler is set to handle user clicks on the card deck.
+    This file contains code for rendering content on review.html.
 
     Requirements:
-        Array of cards to display must be stored in local storage 
-        under the 'cards' key.
+        * Array of cards to display must be stored in local storage 
+          under the 'cards' key.
+        * deck.lib.js
+        * wikiAPI.js
 
     TODO:
         * Add animation for transition to next card.
@@ -16,84 +16,93 @@
     Last modified by JD on 9/3/17 at 9:30 AM.
 */
 
-// retrieve cards array from local storage
-var cards = JSON.parse( localStorage.getItem( 'cards' ) || [] );
+var cards;
 
-// id for element that will contain card elements
+// ids for content containers
 var cardContainerId = "card-container";
+var wikiContainerId = "wiki-links";
+var reestDeckBtnId = "reset-deck";
 
 // active card pulled from the deck
 var currentCard;
 
-// setup the deck and shuffle
-deck.setCards( cards );
-deck.shuffle();
+// initialize the card deck
+initDeck();
 
-// get the first card from the deck (pop the card)
-currentCard = deck.popCard();
+// show the first card
+handleNextCardBtn();
 
-// track if card is flipped over
-currentCard.flipped = false;
-
-// render the card
-renderCard( cardContainerId, currentCard );
-
-// Handles click event on the card container
-function handleCardClick() {
-	// if the card has been turned over and user
-	// has gone through the deck ...
+// Handles click event on the next card button
+function handleNextCardBtn() {
+	// if the user has gone through the deck ...
 	if ( !deck.cardsRemaining() ) {
 		// ... user has gone through the deck
 		// unset current card and update view
 		currentCard = null;
 		renderEndOfDeck( cardContainerId );			
 
-	// if the card hasn't been turned over yet ...
-	} else if ( !currentCard.flipped ) {
-		// ... update the status
-		currentCard.flipped = true;
-
-	// if the card has already been flipped ...		
+	// if cards remain in the deck ...		
 	} else {
 		// ... get the next card and render it
 		currentCard = deck.popCard();
-		currentCard.flipped = false;
 
-		// render the next card
+        // ajax request to wikipedia api for the wiki content and
+        // render on successful response
+        ajaxWikiExtracts( currentCard.tags, renderWikiContent );
 		renderCard( cardContainerId, currentCard );
 	}
 }
 
+// initializes the deck object from cards in local storage
+function initDeck() {
+    // retrieve cards array from local storage
+    cards = JSON.parse( localStorage.getItem( 'cards' ) || [] );
+
+    // set the cards for the deck
+    deck.setCards( cards );
+    deck.shuffle();
+}
 /*
     Functions for rendering a card
     --------------------------------------------------------------- */
 // Returns an html element for a card
 function getCardElement ( front, back = false ) {
-    // card height in pixels
-    var cardHeight = 250;
+    // card element values
+    var cardCss = {
+        'height': '250px'
+    };
+    var btnClass = 'btn btn-primary'
+        + ' btn-sm pull-right';
 
     // jquery objects for elements
     var $cardDiv = $( '<div>' );
     var $front = $( '<div>' );
     var $back = $( '<div>' );
+    var $btn = $( '<button class="' + btnClass 
+        + '">Next</button>' );
 
     // height must be fixed else text overflow problems may occur
     $cardDiv
         .append( [$front, $back] )
-        .css( 'height', cardHeight + 'px' );
+        .css( cardCss );
 
     // give each side the panel class from bootstrap
     $front.addClass( 'panel panel-default front' );
     $back.addClass( 'panel panel-default back' );
 
     // add a panel-body with text for each side of card
+    // and a next button
+    // front
     $( '<div>' )
         .text( front )
         .addClass( 'panel-body' )
+        .append( $btn.clone() )
         .appendTo( $front );
+    // back
     $( '<div>' )
         .text( back )
         .addClass( 'panel-body' )
+        .append( $btn )
         .appendTo( $back );
 
 
@@ -105,7 +114,6 @@ function getCardElement ( front, back = false ) {
         'speed': 300, // speed in ms
         'forceHeight': true // forces height of card to that of container
     } );
-
     return $cardDiv.get();
 }
 
@@ -137,15 +145,67 @@ function renderEndOfDeck( containerId ) {
 
     return $("#" + containerId )
         .empty()
-        .append("<p>" + endOfDeckText + "</p>")
+        .append( "<p>" + endOfDeckText + "</p>" )
+        // reset deck button
+        .append( "<button id='" + reestDeckBtnId 
+            + "' class='btn btn-default pull-right'>Reset</button>" )
         .get();
+}
+
+/*
+    Functions for rendering the wikipedia api content
+    ----------------------------------------------------------
+*/
+// Returns html element for an extract object.
+function getExtractElement ( extract ) {
+    var $containerDiv = $( '<div>' );
+    var $link = $( '<a>' );
+    var $extract = $( '<p>' );
+
+    // set the href of the link and use the title for the
+    // text of the link
+    $link.attr( 'href', extract.url ).text( extract.title );
+
+    // text of extract goes in a p element
+    $extract.text( extract.text );
+
+    // append content and return the container element
+    return $containerDiv.append( [$link, $extract] ).get();
+}
+
+// Function to render the wiki articles.
+function renderWikiContent ( arrWiki ) {
+    $wikiContainer = $( "#" + wikiContainerId );
+    $wikiContainer.empty();
+
+    // render each object in arrWiki
+    $.each( arrWiki, function() {
+        $wikiContainer.append( getExtractElement(this) );
+    } );
 }
 
 
 $( document ).ready( function() {
-	if ( cards.length ) {
 
-		// Listen for click event on the card and assign handler
-		$("#" + cardContainerId).on( "click", handleCardClick );
-	}	
+    // if there are cards ...
+    if ( cards.length ) {
+
+        // ... listen for click events on the card container
+        $( "#" + cardContainerId ).on( 'click', function( e ) {
+            // if reset deck button is clicked
+            if ( e.target.id === reestDeckBtnId ) {
+
+                // reset the deck and shuffle
+                initDeck();
+                deck.shuffle();
+
+                // display the first card
+                handleNextCardBtn();
+
+            // if next card button is clicked ...
+            } else if ( e.target.nodeName === 'BUTTON' ) {
+                handleNextCardBtn();
+            } 
+        } );
+    }   
 } );
