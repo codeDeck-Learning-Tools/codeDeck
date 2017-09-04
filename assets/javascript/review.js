@@ -1,13 +1,13 @@
 /*
     review.js
 
-    File contains code to render the flash card deck and run the
-    user interaction with the cards. The first card is rendered and
-    event handler is set to handle user clicks on the card deck.
+    This file contains code for rendering content on review.html.
 
     Requirements:
-        Array of cards to display must be stored in local storage 
-        under the 'cards' key.
+        * Array of cards to display must be stored in local storage 
+          under the 'cards' key.
+        * deck.lib.js
+        * wikiAPI.js
 
     TODO:
         * Add animation for transition to next card.
@@ -19,8 +19,9 @@
 // retrieve cards array from local storage
 var cards = JSON.parse( localStorage.getItem( 'cards' ) || [] );
 
-// id for element that will contain card elements
+// ids for content containers
 var cardContainerId = "card-container";
+var wikiContainerId = "wiki-links";
 
 // active card pulled from the deck
 var currentCard;
@@ -31,6 +32,9 @@ deck.shuffle();
 
 // get the first card from the deck (pop the card)
 currentCard = deck.popCard();
+
+// request content from wikipedia api and render it
+ajaxWikiExtracts( currentCard.tags, renderWikiContent );
 
 // render the card
 renderCard( cardContainerId, currentCard );
@@ -49,6 +53,10 @@ function handleNextCardBtn() {
 	} else {
 		// ... get the next card and render it
 		currentCard = deck.popCard();
+
+        // ajax request to wikipedia api for the wiki content and
+        // render on successful response
+        ajaxWikiExtracts( currentCard.tags, renderWikiContent );
 		renderCard( cardContainerId, currentCard );
 	}
 }
@@ -151,7 +159,6 @@ $( document ).ready( function() {
 	}	
 } );
 
-
 /*
     Functions for rendering the wikipedia api content
     ----------------------------------------------------------
@@ -171,4 +178,17 @@ function getExtractElement ( extract ) {
 
     // append content and return the container element
     return $containerDiv.append( [$link, $extract] ).get();
+}
+
+// Function to render the wiki articles.
+function renderWikiContent ( arrWiki ) {
+    console.log( arrWiki );
+
+    $wikiContainer = $( "#" + wikiContainerId );
+    $wikiContainer.empty();
+
+    // render each object in arrWiki
+    $.each( arrWiki, function() {
+        $wikiContainer.append( getExtractElement(this) );
+    } );
 }

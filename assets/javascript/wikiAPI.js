@@ -45,7 +45,7 @@ function ajaxWikiExtracts ( q, success ) {
             'generator': 'search',
             'gsrsearch': q,
             'gsrnamespace': 0,
-            'gsrlimit': 10, // pages returned. max is 50.
+            'gsrlimit': 3, // pages returned. max is 50.
 
             // parameters for extracts
             'prop': 'extracts',
