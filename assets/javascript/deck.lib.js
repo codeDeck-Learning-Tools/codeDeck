@@ -5,27 +5,20 @@
     Object for a flash card deck. May only have one deck at a time.
 */
 var deck = ( function () {
-    var allCards = [];
     var cards = [];
     var discarded = [];
 
     return {
         // --- public methods --- //
 
-        // adds a card to all cards and cards arrays
+        // adds a card to cards arrays
         'addCard': function ( card ) {
-            allCards.push( card );
             cards.push( card );
         },
 
         // Returns the count (integer) of remaining cards (not discarded)
         'cardsRemaining': function() {
             return cards.length;
-        },
-
-        // Returns array containing all card objects in deck
-        'getAllCards': function () {
-            return allCards;
         },
 
         // Returns array containing current cards (not discarded)
@@ -40,16 +33,10 @@ var deck = ( function () {
             return poppedCard;
         },
 
-        // Sets cards to discarded and empties discarded array.
-        'reset': function () {
-            cards = allCards;
-            discarded = [];
-        },
-
-        // sets the allCards array and reset cards
+        // sets the cards array and reset cards
         'setCards': function ( arrCards ) {
-            allCards = arrCards;
-            this.reset();
+            cards = arrCards;
+            discarded = [];
         },
 
         // Randomizes the order of the cards. Returns true if succesful.
