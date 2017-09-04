@@ -1,0 +1,16 @@
+body {
+	background: black;
+/*	background-image: url("../images/background.png");
+	background-repeat: no-repeat;
+	background-position: center;*/
+}
+
+/* PNotify for Login Errors */
+.ui-pnotify-container {
+    background-color: #EE6161 !important;
+    background-image: none !important;
+    border: none !important;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    }
