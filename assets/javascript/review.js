@@ -164,7 +164,7 @@ function getExtractElement ( extract ) {
     // text of the link
     $link
         .attr( {
-            'href': 'extract.url',
+            'href': extract.url,
             'target': '_blank'
         } )
         .text( extract.title );
