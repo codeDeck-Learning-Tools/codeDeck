@@ -13,6 +13,59 @@
 
 <body>
 
+<!-- Modal -->
+<div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+        <h4 class="modal-title">Contact</h4>
+      </div>
+      <div class="modal-body">
+        <div class="containter">
+          <div class="row">
+          <form class="form-horizontal" name="commentform" method="post" action="send_form_email.php">
+
+          <div class="col-xs-8">
+            <div class="form-group">
+              <label for="InputName" class="col-lg-4 control-label">Name</label>
+              <div class="col-lg-8">
+                  <input type="text" class="form-control" name="first_name" id="first_name"  required>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="InputEmail" class="col-lg-4 control-label">Email</label>
+              <div class="col-lg-8">
+                  <input type="email" class="form-control" id="email" name="email"  required  >
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="InputMessage" class="col-lg-4 control-label">Message</label>
+              <div class="col-lg-8">
+                  <textarea name="comments" id="comments" class="form-control" rows="5" required></textarea>
+              </div>
+          </div>
+                      
+          <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+          </div>
+
+          </form>
+
+          <div class="col-xs-4 text-right">
+              <img class="logo" src="assets/images/codeDeckLogoV2.png" alt="codeDeck Icon" style="height:180px">
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -30,7 +83,13 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Contact</a></li>
+          <li>
+            <a href="#contactModal" data-toggle="modal">
+              <i class="fa fa-contact "></i>
+              <span class="network-name">Contact</span>
+            </a>
+          </li>
+
           <li><a href="sign.html">Sign On</a></li>
           <li><a href="#">Log Off</a></li>
         </ul>
