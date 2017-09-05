@@ -95,7 +95,7 @@
             </li>
 
             <li><a href="sign.html">Sign On</a></li>
-            <li><a href="#">Log Off</a></li>
+            <!-- <li><a href="#">Log Off</a></li> -->
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -243,7 +243,7 @@ function pass () {
                       localStorage.setItem('user', JSON.stringify({
                           email: $( '#email' ).val(),
                           name: $( '#first-name' ).val() + ' ' + $( '#last-name' ).val()
-                      }))
+                      }));
                       
                       // navigate to deck.html
                       document.location = 'deck.html';
@@ -255,6 +255,10 @@ function pass () {
             text: "Please complete all required fields",
             type: "error"
           });
+          console.log($('#first-name').val());
+          console.log($('#last-name').val());
+          console.log($('#email').val());
+
       }
 }
   </script>

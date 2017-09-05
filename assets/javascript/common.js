@@ -1,5 +1,4 @@
-$(".logOut").on("click", function (){
-    var alertMessage = localStorage.getItem('alert');
-    localStorage.removeItem('alert');
-    document.location = 'index.html';
-})
+$(".logOff").on("click", function (){
+        localStorage.clear();
+        document.location = 'index.html';
+});
