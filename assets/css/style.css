@@ -1,11 +1,93 @@
+/* Global CSS*/
+.navbar.navbar-default {
+	background: black;
+	border: black;
+}
+
+.navbar-default .navbar-brand {
+	font-family: 'Roboto', sans-serif;
+	color: white;
+}
+
 body {
 	background: black;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+
 /*	background-image: url("../images/background.png");
 	background-repeat: no-repeat;
 	background-position: center;*/
 }
 
+.suites {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+  	border-bottom: 8px solid #4aaaa5;
+}
+
+/* Main Page CSS */
+.container .jumbotron {
+	padding: 0;
+}
+
+.jumbotron {
+	background: black;
+}
+
+.jumbotron h1 {
+	color: white;
+}
+
+.logo {
+	float: left;
+}
+
+.jumbotron p {
+	color: grey;
+	font-size: 18px;
+}
+
+.sample h1 {
+	padding: 0 15px 0 15px;
+}
+
+.github-deck {
+	background: green;
+	margin: 1px;
+}
+
+/* Sign In Page CSS */
 /* PNotify for Login Errors */
+#sign-on {
+	margin: auto; 
+	max-width: 400px;
+}
+
+.panel-body {
+	background: black;
+}
+
+.form-control {
+	background: #dcdee2;
+}
+
+.user-login {
+	float: left;
+}
+
+.google-authenticate {
+	height: 36px;
+	padding: 0 8px;
+}
+
 .ui-pnotify-container {
     background-color: #EE6161 !important;
     background-image: none !important;
@@ -13,4 +95,13 @@ body {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    }
+}
+
+/* Card Review Page CSS */
+.panel.panel-default.front {
+	background: black;
+}
+
+.panel.panel-default.back {
+	background: black;
+}
