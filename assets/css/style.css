@@ -97,6 +97,22 @@ body {
     border-radius: 10px;
 }
 
+/* Deck Selection Page CSS */
+.gitdeck {
+	height: 200px;
+}
+
+.wrapper {
+	width: 50%;
+	text-align: center;
+}
+
+.panel-body a {
+	color: white;
+	font-size: 18px;
+	padding: 0 12px 0;
+}
+
 /* Card Review Page CSS */
 .panel.panel-default.front {
 	background: black;
