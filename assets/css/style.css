@@ -19,13 +19,29 @@ body {
 	background-position: center;*/
 }
 
+.footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+  	border-bottom: 8px solid #4aaaa5;
+}
+
 /* Main Page CSS */
+.container .jumbotron {
+	padding: 0;
+}
+
 .jumbotron {
 	background: black;
 }
 
 .jumbotron h1 {
 	color: white;
+}
+
+.logo {
+	float: left;
 }
 
 .jumbotron p {
