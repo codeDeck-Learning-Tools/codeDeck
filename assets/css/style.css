@@ -121,3 +121,11 @@ body {
 .panel.panel-default.back {
 	background: black;
 }
+
+.tagLine {
+	margin: -15px 0;
+}
+
+.about-us {
+	margin-top: 20px;
+}
