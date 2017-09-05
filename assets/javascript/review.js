@@ -69,8 +69,10 @@ function initDeck() {
 function getCardElement ( front, back = false ) {
     // add styling as needed to the outer div containing the card sides
     var cardCss = {
-        'height': '250px',
-        'background-color': 'black'
+        "border-radius": "25px",
+        "background": "green",
+        "padding": "20px", 
+        "height": "250px" 
     };
     var btnClass = 'btn btn-primary'
         + ' btn-sm pull-right';
