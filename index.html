@@ -6,12 +6,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-  <title>codeDeck</title>
 </head>
 
 <body>
-  <div class="container">
+
+<!-- Modal -->
+<div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+        <h4 class="modal-title">Contact</h4>
+      </div>
+      <div class="modal-body">
+        <div class="containter">
+          <div class="row">
+          <form class="form-horizontal" name="commentform" method="post" action="send_form_email.php">
+
+          <div class="col-xs-8">
+            <div class="form-group">
+              <label for="InputName" class="col-lg-4 control-label">Name</label>
+              <div class="col-lg-8">
+                  <input type="text" class="form-control" name="first_name" id="first_name"  required>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="InputEmail" class="col-lg-4 control-label">Email</label>
+              <div class="col-lg-8">
+                  <input type="email" class="form-control" id="email" name="email"  required  >
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="InputMessage" class="col-lg-4 control-label">Message</label>
+              <div class="col-lg-8">
+                  <textarea name="comments" id="comments" class="form-control" rows="5" required></textarea>
+              </div>
+          </div>
+                      
+          <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+          </div>
+
+          </form>
+
+          <div class="col-xs-4 text-right">
+              <img class="logo" src="assets/images/codeDeckLogoV2.png" alt="codeDeck Icon" style="height:180px">
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -23,56 +76,89 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">codeDeck</a>
+        <a class="navbar-brand" href="index.html">codeDeck &#9824;</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.html">Our Story</a></li>
-          <li><a href="#">Contact</a></li>
+          <li>
+            <a href="#contactModal" data-toggle="modal">
+              <i class="fa fa-contact "></i>
+              <span class="network-name">Contact</span>
+            </a>
+          </li>
+
           <li><a href="sign.html">Sign On</a></li>
+          <li><a href="#">Log Off</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
-
+  <div class="container">
 
     <div class="jumbotron">
-      <h2><strong>Stack the odds in your favor!</strong></h2>
-      <h5><strong>Interested in learning code? Overwhelmed by the amount of information to learn? We've got a tool for you! Blending the old with the new, codeDeck is an interactive educational flash card game! Try our first GIT deck, or checkout other Decks soon to come!</strong></h5>
+
+      <img class="logo" src="assets/images/codeDeckIconTrim.png" alt="codeDeck Icon" style="height:80px; margin-right: 10px">
+
+      <h1><strong>Stack the odds in your favor!</strong></h1>
+      
+      <div class = "about-us">
+        <p>Interested in learning code? Overwhelmed by the amount of information to learn? We've got a tool for you! 
+        </p>
+
+        <p>
+        Blending the old with the new, codeDeck is an interactive educational flash card game! Try our first GIT deck, or checkout other Decks soon to come!
+        </p>
+      </div>
+
+    </div>
+
+    <div class = "sample">
+      <h1>Decks Available</h1>
     </div>
 
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-6 col-sm-12">
         <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title"><strong>Product Details Here</strong></h3>
+          <div class = "github-deck">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Github - 31 Cards</strong></h3>
+            </div>
+
+            <div class="panel-body">
+              <form>
+                <div>
+                  <p>
+                    Having trouble learning the ropes of Github? Did you accidentally merge all of your old work into your project repo? We've all been there, use these cards to brush up on your Git knowledge so you'll never wipe out a week of work again!
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
 
-          <div class="panel-body">
-            <form>
-              <div>
-                <p>
-                  All the things about our product
-                </p>
-              </div>
-            </form>
-          </div>
-          
         </div>
       </div>
     </div>
     
   </div>
 
+  <!-- FOOTER -->
+  <div class="suites">
+  &clubs;
+  &spades;
+  &hearts;
+  &diams;
+  </div>
+  <div class="footer"></div> 
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-  <script src= "assets/javascript/logic.js"></script>
+  <!-- <script src= "assets/javascript/logic.js"></script> -->
 
 </body>
 
