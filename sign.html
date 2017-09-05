@@ -8,12 +8,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.css">
   <link rel="stylesheet" href="assets/css/style.css"> 
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 
   <title>codeDeck Sign-On</title>
 </head>
 
 <body>
-  <div class="container">
 
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -26,16 +27,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-          <a class="navbar-brand" href="#">codeDeck</a>
+          <a class="navbar-brand" href="index.html">codeDeck &#9824;</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.html">Our Story</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="sign.html">Sign On</a></li>
+            <li><a href="#">Log Off</a></li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -43,9 +44,11 @@
       <!-- /.container-fluid -->
     </nav>
 
+    <div class="container">
+
     <div class="row">
-      <div class="col-lg-6">
-        <div class="panel panel-primary">
+      <div class="col-lg-12 col-sm-12" >
+        <div id= "sign-on" class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title"><strong>Authentication Details</strong></h3>
           </div>
@@ -71,16 +74,12 @@
               <br>
 
               <!-- If Authenticated, go to deck.html -->
-              <div>
+              <div class="user-login">
                 <button class="btn btn-primary" type="button" id="submit-info">Submit</button>
               </div>
 
-              <!-- Float Left in CSS, side by side sign in buttons -->
-
-              <div>
-                <!-- <button class="btn btn-primary" type="google" id="submit-info">Google Sign Placeholder</button> -->
-                <img src="assets/images/btn_google_signin_light_normal_web.png" id="signIn">
-              </div>
+              <!-- <button class="btn btn-primary" type="google" id="submit-info">Google Sign Placeholder</button> -->
+              <img class="google-authenticate" src="assets/images/btn_google_signin_light_normal_web.png" id="signIn">
 
             </form>
 
@@ -91,6 +90,15 @@
 
 
   </div>
+
+  <!-- FOOTER -->
+  <div class="suites">
+  &clubs;
+  &spades;
+  &hearts;
+  &diams;
+  </div>
+  <div class="footer"></div> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
@@ -161,6 +169,7 @@ Sign-in
 
   Checking for all requirements prior to passing to deck.html
 */
+
 function pass () {
       if (
         $( '#first-name' ).val() &&
