@@ -67,9 +67,10 @@ function initDeck() {
     --------------------------------------------------------------- */
 // Returns an html element for a card
 function getCardElement ( front, back = false ) {
-    // card element values
+    // add styling as needed to the outer div containing the card sides
     var cardCss = {
-        'height': '250px'
+        'height': '250px',
+        'background-color': 'black'
     };
     var btnClass = 'btn btn-primary'
         + ' btn-sm pull-right';
@@ -86,22 +87,19 @@ function getCardElement ( front, back = false ) {
         .append( [$front, $back] )
         .css( cardCss );
 
-    // give each side the panel class from bootstrap
-    $front.addClass( 'panel panel-default front' );
-    $back.addClass( 'panel panel-default back' );
+    // give each side the corresponding class
+    $front.addClass( 'front' );
+    $back.addClass( 'back' );
 
-    // add a panel-body with text for each side of card
-    // and a next button
+    // add styling and properties to each side of the card
     // front
     $( '<div>' )
         .text( front )
-        .addClass( 'panel-body' )
         .append( $btn.clone() )
         .appendTo( $front );
     // back
     $( '<div>' )
         .text( back )
-        .addClass( 'panel-body' )
         .append( $btn )
         .appendTo( $back );
 
