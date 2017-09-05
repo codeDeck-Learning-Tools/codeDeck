@@ -1,23 +1,48 @@
+/* Global CSS*/
 .navbar.navbar-default {
 	background: black;
 	border: black;
 }
 
-.jumbotron {
-	background: black;
-}
-
-.jumbotron h1, h5 {
+.navbar-default .navbar-brand {
+	font-family: 'Roboto', sans-serif;
 	color: white;
 }
 
 body {
 	background: black;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+
 /*	background-image: url("../images/background.png");
 	background-repeat: no-repeat;
 	background-position: center;*/
 }
 
+/* Main Page CSS */
+.jumbotron {
+	background: black;
+}
+
+.jumbotron h1 {
+	color: white;
+}
+
+.jumbotron p {
+	color: grey;
+	font-size: 18px;
+}
+
+.sample h1 {
+	padding: 0 15px 0 15px;
+}
+
+.github-deck {
+	background: green;
+	margin: 1px;
+}
+
+/* Sign In Page CSS */
 /* PNotify for Login Errors */
 .ui-pnotify-container {
     background-color: #EE6161 !important;
