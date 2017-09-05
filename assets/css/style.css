@@ -96,3 +96,12 @@ body {
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
+
+/* Card Review Page CSS */
+.panel.panel-default.front {
+	background: black;
+}
+
+.panel.panel-default.back {
+	background: black;
+}
