@@ -47,8 +47,8 @@
     <div class="container">
 
     <div class="row">
-      <div class="col-lg-6">
-        <div class="panel panel-primary">
+      <div class="col-lg-12 col-sm-12" >
+        <div id= "sign-on" class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title"><strong>Authentication Details</strong></h3>
           </div>
@@ -74,16 +74,12 @@
               <br>
 
               <!-- If Authenticated, go to deck.html -->
-              <div>
+              <div class="user-login">
                 <button class="btn btn-primary" type="button" id="submit-info">Submit</button>
               </div>
 
-              <!-- Float Left in CSS, side by side sign in buttons -->
-
-              <div>
-                <!-- <button class="btn btn-primary" type="google" id="submit-info">Google Sign Placeholder</button> -->
-                <img src="assets/images/btn_google_signin_light_normal_web.png" id="signIn">
-              </div>
+              <!-- <button class="btn btn-primary" type="google" id="submit-info">Google Sign Placeholder</button> -->
+              <img class="google-authenticate" src="assets/images/btn_google_signin_light_normal_web.png" id="signIn">
 
             </form>
 
@@ -96,6 +92,12 @@
   </div>
 
   <!-- FOOTER -->
+  <div class="suites">
+  &clubs;
+  &spades;
+  &hearts;
+  &diams;
+  </div>
   <div class="footer"></div> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
