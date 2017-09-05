@@ -162,7 +162,12 @@ function getExtractElement ( extract ) {
 
     // set the href of the link and use the title for the
     // text of the link
-    $link.attr( 'href', extract.url ).text( extract.title );
+    $link
+        .attr( {
+            'href': extract.url,
+            'target': '_blank'
+        } )
+        .text( extract.title );
 
     // text of extract goes in a p element
     $extract.text( extract.text );
