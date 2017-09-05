@@ -69,10 +69,10 @@ function initDeck() {
 function getCardElement ( front, back = false ) {
     // add styling as needed to the outer div containing the card sides
     var cardCss = {
-        "border-radius": "25px",
+        // "border-radius": "25px",
         "background": "green",
-        "padding": "20px", 
-        "height": "250px" 
+        "height": "250px",
+        // "width": "450px"
     };
     var btnClass = 'btn btn-primary'
         + ' btn-sm pull-right';
@@ -98,11 +98,13 @@ function getCardElement ( front, back = false ) {
     $( '<div>' )
         .text( front )
         .append( $btn.clone() )
+        .css({'padding':'20px'})
         .appendTo( $front );
     // back
     $( '<div>' )
         .text( back )
-        .append( $btn )
+        .append( $btn )        
+        .css({'padding':'20px'})
         .appendTo( $back );
 
 
