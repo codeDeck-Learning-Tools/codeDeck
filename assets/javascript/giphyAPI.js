@@ -57,7 +57,6 @@ var giphyGIF = {
 // 	// jslint: Expected an identifier and instead saw '('.
 // 	// storing array of results
 
-// 	var results = response.data;
 
 // 	for (var i = 0; i < results.length; i++) {
 // 		if (results[i].rating == "pg-13" || results[i].rating == "g") {
