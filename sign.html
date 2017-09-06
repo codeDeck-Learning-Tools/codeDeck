@@ -28,7 +28,7 @@
       <div class="modal-body">
         <div class="containter">
           <div class="row">
-          <form class="form-horizontal" name="commentform" method="post" action="send_form_email.php">
+          <form class="form-horizontal" name="commentform">
 
           <div class="col-xs-8">
             <div class="form-group">
@@ -38,12 +38,12 @@
               </div>
           </div>
 
-<!--           <div class="form-group">
+          <div class="form-group">
     <label for="InputEmail" class="col-lg-4 control-label">Email</label>
     <div class="col-lg-8">
-        <input type="email" class="form-control" id="email" name="email"  required  >
+        <input type="email" class="form-control" id="emailForm" name="email"  required  >
     </div>
-</div> -->
+</div>
 
           <div class="form-group">
               <label for="InputMessage" class="col-lg-4 control-label">Message</label>
@@ -52,7 +52,7 @@
               </div>
           </div>
                       
-          <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+          <input type="button" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
           </div>
 
           </form>
@@ -95,7 +95,7 @@
             </li>
 
             <li><a href="sign.html">Sign On</a></li>
-            <li><a href="#">Log Off</a></li>
+            <!-- <li><a href="#">Log Off</a></li> -->
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -165,6 +165,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="assets/javascript/firebase.js"></script>
+  <script src="assets/javascript/contact.js"></script>
+  <script src="assets/javascript/common.js"></script> 
 
   <script>
 $( '#signIn' ).on( 'click', click );
@@ -205,6 +207,7 @@ function click () {
                 name: user.displayName
             } ) );
             
+            logLogin();
 
             // retrive the cards from the database
             database.getCards( function ( cards ) {
@@ -243,13 +246,16 @@ function pass () {
                       localStorage.setItem('user', JSON.stringify({
                           email: $( '#email' ).val(),
                           name: $( '#first-name' ).val() + ' ' + $( '#last-name' ).val()
-                      }))
+                      }));
 
+                      logLogin();
+                      
                       // navigate to deck.html
                       document.location = 'deck.html';
                   }
               } );
       } else {
+        PNotify.prototype.options.styling = "bootstrap3";
         new PNotify({
             title: "Login Error",
             text: "Please complete all required fields",
@@ -257,7 +263,26 @@ function pass () {
           });
       }
 }
-  </script>
+
+function logLogin() {
+        /**
+     * Sign-in page that will save to firebase
+     * */
+
+    var database = firebase.database();
+    database.reflog = database.ref( 'signOn' );
+
+    var user = JSON.parse(localStorage.getItem('user'));
+
+    database.ref('signOn').push( {
+        'name': user.name,
+        'email': user.email,
+        'dateAdded': firebase.database.ServerValue.TIMESTAMP
+    } );
+    
+    console.log(user);
+}
+</script>
 
 </body>
 
