@@ -166,6 +166,7 @@
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="assets/javascript/firebase.js"></script>
   <script src="assets/javascript/contact.js"></script>
+  <script src="assets/javascript/common.js"></script> 
 
   <script>
 $( '#signIn' ).on( 'click', click );
@@ -206,6 +207,7 @@ function click () {
                 name: user.displayName
             } ) );
             
+            logLogin();
 
             // retrive the cards from the database
             database.getCards( function ( cards ) {
@@ -245,6 +247,8 @@ function pass () {
                           email: $( '#email' ).val(),
                           name: $( '#first-name' ).val() + ' ' + $( '#last-name' ).val()
                       }));
+
+                      logLogin();
                       
                       // navigate to deck.html
                       document.location = 'deck.html';
@@ -259,7 +263,26 @@ function pass () {
           });
       }
 }
-  </script>
+
+function logLogin() {
+        /**
+     * Sign-in page that will save to firebase
+     * */
+
+    var database = firebase.database();
+    database.reflog = database.ref( 'signOn' );
+
+    var user = JSON.parse(localStorage.getItem('user'));
+
+    database.ref('signOn').push( {
+        'name': user.name,
+        'email': user.email,
+        'dateAdded': firebase.database.ServerValue.TIMESTAMP
+    } );
+    
+    console.log(user);
+}
+</script>
 
 </body>
 
