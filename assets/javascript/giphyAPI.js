@@ -20,7 +20,7 @@ var giphyGIF = {
 	ratingLimit: "pg-13",
 
 	search: function () {
-		var queryURL = "https://api.giphy.com/v1/gifs/search?";
+		var queryURL = "https://api.giphy.com/v1/gifs/random?";
 
 		// compile search url
 		queryURL += $.param({
@@ -30,20 +30,30 @@ var giphyGIF = {
 			rating: this.ratingLimit
 		});
 
-		// return $.ajax({
-		// 	url: queryURL,
-		// 	method: "GET"
-		// });
-	},
+		return $.ajax({
+			url: queryURL,
+			method: "GET"
+		})
+
+			.done(function (response) {
+				console.log(response);
+
+				var results = response.data;
+				
+				for (var i = 0; results.length; i++) {
+					var gifDiv = $("div class='giffies'>");
+				}
+			});
+	}
 
 	// experimenting with fetch method, which should do the same task
-	render: $(function ($) {
-		fetch("https://api.giphy.com/v1/gifs/random?tag=congratulations&rating=pg-13&api_key=f3971dc19c6240feab39b26de85716d1&limit=3").then(function (response) {
-			return response.json();
-		}).then(function (result) {
-			$("myModal").html('<img src="' + result.data.image_url + '">');
-		});
-	});
+	// render: $(function ($) {
+	// 	fetch("https://api.giphy.com/v1/gifs/random?tag=congratulations&rating=pg-13&api_key=f3971dc19c6240feab39b26de85716d1&limit=3").then(function (response) {
+	// 		return response.json();
+	// 	}).then(function (result) {
+	// 		$("#myModal").html('<img src="' + result.data.image_url + '">');
+	// 	});
+	// });
 	// semi-colon syntax error?
 }
 
