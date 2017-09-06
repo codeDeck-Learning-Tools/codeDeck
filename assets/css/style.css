@@ -143,19 +143,11 @@ body {
 }
 
 /* Card Review Page CSS */
-.panel.panel-default.front {
-	background: black;
-}
+#wiki-links a {
+	color: white;
+} 
 
-.panel.panel-default.back {
-	background: black;
-}
-
-.tagLine {
-	margin: -15px 0;
-}
-
-.about-us {
-	margin-top: 20px;
+#wiki-links p {
+	color: hsla(0, 0%, 100%, .61);
 }
 
