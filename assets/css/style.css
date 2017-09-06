@@ -59,10 +59,6 @@ body {
 	background: black;
 }
 
-/*#deckbox {
-	float: left;
-}*/
-
 /* Main Page CSS */
 .container .jumbotron {
 	padding: 0;
@@ -106,6 +102,12 @@ body {
 #sign-on {
 	margin: auto; 
 	max-width: 400px;
+	border-color: #0c8385;
+}
+
+.panel-primary>#sign-heading {
+	background: #0c8385;
+	border-color: #0c8385;
 }
 
 .panel-body {
@@ -120,41 +122,55 @@ body {
 	float: left;
 }
 
+#sign-btn {
+	background-color: #0c8385;
+	border-color: #005557;
+}
+
 .google-authenticate {
 	height: 36px;
 	padding: 0 8px;
 }
 
 /* Deck Selection Page CSS */
-.gitdeck {
-	height: 200px;
+#deck-panel {
+	border-color: #0c8385;
 }
 
-.wrapper {
-	width: 50%;
-	text-align: center;
-}
-
-.panel-body .deck1 {
-	color: white;
-	font-size: 18px;
-	padding: 0 12px 0;
+.panel-primary>#sign-heading {
+	background: #0c8385;
+	border-color: #0c8385;
 }
 
 /* Card Review Page CSS */
-.panel.panel-default.front {
-	background: black;
+.card-front {
+	height: 150px;
 }
 
-.panel.panel-default.back {
-	background: black;
+.front,
+.back {
+	border: 8px solid #0c8385;
+    border-radius: 25px;
 }
 
-.tagLine {
-	margin: -15px 0;
+.next-btn {
+	background-color: black;
+	border-color: grey;
 }
 
-.about-us {
-	margin-top: 20px;
+.end-deck {
+	height: 216px;
 }
 
+#wiki-links a {
+	color: white;
+} 
+
+#wiki-links p {
+	color: hsla(0, 0%, 100%, .61);
+}
+
+.next-btn:hover {
+	background: #0c8385;
+	border-color: #0c8385;
+}
