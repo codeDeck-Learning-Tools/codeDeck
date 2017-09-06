@@ -103,7 +103,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">codeDeck &#9824;</a>
+        <a class="navbar-brand" href="index.html">codeDeck <span class="logo-color">&#9824;</span></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -136,15 +136,48 @@
           <div class="panel-body">
             <form>
 
-              <div class="wrapper">
-                <p>
+              <div class="row">
+              
+                <div class="col-lg-4 col-sm-12">
+                  <div id="gitdeck" class="panel panel-primary">
+                    <div class = "deck-header">
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Github - 31 Cards</strong></h3>
+                      </div>
 
-                  <a class= "deck1" href="review.html">
-                  <img class="gitdeck" src="assets/images/monarchGreen.jpg"> 
-                  GitDeck
-                  </a>
+                      <div class="panel-body">
+                        <form>
+                          <div>
+                            <p>
+                              Having trouble learning the ropes of Github? Did you accidentally merge all of your old work into your project repo? We've all been there, use these cards to brush up on your Git knowledge so you'll never wipe out a week of work again!
+                            </p>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                </p>
+                <div class="col-lg-4 col-sm-12">
+                  <div class="panel panel-primary">
+                    <div class = "deck-header">
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><strong>CSS - Coming Soon!</strong></h3>
+                      </div>
+
+                      <div class="panel-body">
+                        <form>
+                          <div>
+                            <p>
+                            See yourself as a future front-end designer? Not sure how to decorate your website into what you envision? CSS will help you beautify your website!
+                            </p>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
             </form>
@@ -178,8 +211,10 @@
 
   <!-- FOOTER -->
   <div class="suites">
+  <span class="logo-color">
   &clubs;
   &spades;
+  </span>
   &hearts;
   &diams;
   </div>
@@ -194,6 +229,16 @@
   <script src="assets/javascript/contact.js"></script>
   <script src="assets/javascript/common.js"></script> 
 
+  <script>
+
+   $('#gitdeck').click(function(e) {
+        e.preventDefault();
+        window.location = 'review.html';
+    });
+
+  </script>
+
 </body>
 
 </html>
+

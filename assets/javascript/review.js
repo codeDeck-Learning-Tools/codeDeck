@@ -21,7 +21,7 @@ var cards;
 // ids for content containers
 var cardContainerId = "card-container";
 var wikiContainerId = "wiki-links";
-var reestDeckBtnId = "reset-deck";
+var resetDeckBtnId = "reset-deck";
 
 // active card pulled from the deck
 var currentCard;
@@ -200,7 +200,7 @@ $( document ).ready( function() {
         // ... listen for click events on the card container
         $( "#" + cardContainerId ).on( 'click', function( e ) {
             // if reset deck button is clicked
-            if ( e.target.id === reestDeckBtnId ) {
+            if ( e.target.id === resetDeckBtnId ) {
 
                 // reset the deck and shuffle
                 initDeck();
