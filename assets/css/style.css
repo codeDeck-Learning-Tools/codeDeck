@@ -133,19 +133,13 @@ body {
 }
 
 /* Deck Selection Page CSS */
-.gitdeck {
-	height: 200px;
+#deck-panel {
+	border-color: #0c8385;
 }
 
-.wrapper {
-	width: 50%;
-	text-align: center;
-}
-
-.panel-body .deck1 {
-	color: white;
-	font-size: 18px;
-	padding: 0 12px 0;
+.panel-primary>#sign-heading {
+	background: #0c8385;
+	border-color: #0c8385;
 }
 
 /* Card Review Page CSS */
