@@ -4,6 +4,10 @@
 	border: black;
 }
 
+.logo-color {
+	color: #4eacc2;
+}
+
 .navbar-default .navbar-brand {
 	font-family: 'Roboto', sans-serif;
 	color: white;
@@ -55,6 +59,10 @@ body {
 	background: black;
 }
 
+/*#deckbox {
+	float: left;
+}*/
+
 /* Main Page CSS */
 .container .jumbotron {
 	padding: 0;
@@ -77,13 +85,21 @@ body {
 	font-size: 18px;
 }
 
-.sample h1 {
+.lineup {
 	padding: 0 15px 0 15px;
 }
 
-.github-deck {
+.lineup p {
+	color: hsla(0, 0%, 100%, .61);
+}
+
+.deck-header {
 	background: green;
 	margin: 1px;
+}
+
+.deck-header p {
+	color: hsla(0, 0%, 100%, .61)
 }
 
 /* Sign In Page CSS */
