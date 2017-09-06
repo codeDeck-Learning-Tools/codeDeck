@@ -143,6 +143,25 @@ body {
 }
 
 /* Card Review Page CSS */
+.card-front {
+	height: 150px;
+}
+
+.front,
+.back {
+	border: 8px solid #0c8385;
+    border-radius: 25px;
+}
+
+.next-btn {
+	background-color: black;
+	border-color: grey;
+}
+
+.end-deck {
+	height: 216px;
+}
+
 #wiki-links a {
 	color: white;
 } 
@@ -151,3 +170,7 @@ body {
 	color: hsla(0, 0%, 100%, .61);
 }
 
+.next-btn:hover {
+	background: #0c8385;
+	border-color: #0c8385;
+}
