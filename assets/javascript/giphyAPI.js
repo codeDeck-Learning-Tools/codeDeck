@@ -87,13 +87,27 @@ function counter() {
 	var count = 0;
 	// function to increment count when the next card button is clicked
 	// only set to next card. going back to a previous card won't add to the count
-	$("#nextCard").click(function () {
-		count++;
-		$("#nextCard").html("Current card count is: " + count);
-	});
+// 	$("#nextCard").click(function () {
+// 		count++;
+// 		$("#nextCard").html("Current card count is: " + count);
+// 	});
 
-	if (count === 10) {
-		giphyGIF.render();
-		count = 0;
+// 	if (count === 10) {
+// 		giphyGIF.render();
+// 		count = 0;
+// 	}
+// });
+
+$(document).ready(function () {
+	$("#nextCard").on("click", function () {
+		var count = 0;
+
+		count++;
+		$("#cardCount").html("Current Card Count is: " + count);
+
+		if (count === 10) {
+			giphyGIF.render();
+			count = 0;
+		}
 	}
 });
