@@ -87,7 +87,6 @@ body {
 }
 
 /* Sign In Page CSS */
-/* PNotify for Login Errors */
 #sign-on {
 	margin: auto; 
 	max-width: 400px;
@@ -108,15 +107,6 @@ body {
 .google-authenticate {
 	height: 36px;
 	padding: 0 8px;
-}
-
-.ui-pnotify-container {
-    background-color: #EE6161 !important;
-    background-image: none !important;
-    border: none !important;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
 }
 
 /* Deck Selection Page CSS */
@@ -143,3 +133,12 @@ body {
 .panel.panel-default.back {
 	background: black;
 }
+
+.tagLine {
+	margin: -15px 0;
+}
+
+.about-us {
+	margin-top: 20px;
+}
+
