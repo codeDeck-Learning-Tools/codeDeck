@@ -8,15 +8,13 @@
           under the 'cards' key.
         * deck.lib.js
         * wikiAPI.js
-
-    TODO:
-        * Add animation for transition to next card.
-        * Action for user to take when end of deck is reached.
-
-    Last modified by JD on 9/3/17 at 9:30 AM.
+        * giphyAPI.js
 */
-
+// array of flash cards
 var cards;
+
+// array of urls for gifs
+var arrGifs = [];
 
 // ids for content containers
 var cardContainerId = "card-container";
@@ -32,14 +30,25 @@ initDeck();
 // show the first card
 handleNextCardBtn();
 
+// request urls for gifs from giphy api
+ajaxGiphy(arrGifs);
+
 // Handles click event on the next card button
 function handleNextCardBtn() {
+
 	// if the user has gone through the deck ...
 	if ( !deck.cardsRemaining() ) {
 		// ... user has gone through the deck
 		// unset current card and update view
 		currentCard = null;
-		renderEndOfDeck( cardContainerId );			
+		renderEndOfDeck( cardContainerId );
+
+        // display gif if the api returned gif successfully
+        if ( arrGifs.length > 0 ) {
+            console.log( arrGifs );
+            // do nothing if no response from the api
+        }
+
 
 	// if cards remain in the deck ...		
 	} else {
@@ -216,3 +225,21 @@ $( document ).ready( function() {
         } );
     }   
 } );
+
+/*
+    functions for rendering mileston gifs
+    ----------------------------------------------------------
+*/
+// Gets urls from giphy API and stores them in arrGifs
+function ajaxGiphy() {
+    // reuqest gifs from the giphy api and add them to arrGifs
+
+    // this line is for testing until this function is written
+    arrGifs.push("https://media.giphy.com/media/Is1O1TWV0LEJi/giphy.gif");
+}
+
+// Renders gif in a modal
+function renderGif(url) {
+    // TODO: this function will accept the url for a gif
+    // and display it in a modal
+}
