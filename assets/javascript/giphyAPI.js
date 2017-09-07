@@ -1,13 +1,19 @@
+/*
+	Calls to Giphy's API for gifs to display to the user
+	upon reaching a progress checkpoint.
+*/
+
 var giphyGIF = {
-  apiKey: "f3971dc19c6240feab39b26de85716d1",
+	apiKey: "f3971dc19c6240feab39b26de85716d1",
   host: "https://api.giphy.com/v1/gifs/search?q=",
   limit: 3,
   ratingLimit: "pg-13",
 
+	// invokes the ajax request, and displays it on the user's page
   search: function() {
     var queryURL = "https://api.giphy.com/v1/gifs/search?";
 
-    // compile search url
+    // compile search parameters
     queryURL += $.param({
       api_key: this.apiKey,
       q: "congratulations",
@@ -15,6 +21,7 @@ var giphyGIF = {
       rating: this.ratingLimit
     });
 
+		// done response also takes the url's from the results array objects, then puts them into the html
     return $.ajax({
       url: queryURL,
       method: "GET"
@@ -26,16 +33,8 @@ var giphyGIF = {
 			$("#gif1").html('<img src="' + results[0].images.fixed_height.url + '">');
 			$("#gif2").html('<img src="' + results[1].images.fixed_height.url + '">');
 			$("#gif3").html('<img src="' + results[2].images.fixed_height.url + '">');
-			// var gifBox = $("tr").children();
-			
-			// gifBox(0).html('<img src="' + results.url[0] + '">');
-			// gifBox(1).html(results.data.url[1]);
-      // gifBox(2).html(results.data.url[2]);
     });
   }
 };
-
-// thinking to put a 3column x 1row table in the modal
-// table>tr>td
 
 giphyGIF.search();
