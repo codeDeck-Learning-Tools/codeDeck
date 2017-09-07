@@ -17,6 +17,7 @@
 body {
 	background: black;
 	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
 	color: white;
 }
 
@@ -124,6 +125,9 @@ p.tagLine {
 	margin-bottom: 5px;
 }
 
+#about-blurb {
+	padding-bottom: 30px;
+}
 
 /* Sign In Page CSS */
 
@@ -144,6 +148,10 @@ p.tagLine {
 
 .form-control {
 	background: #dcdee2;
+}
+
+#sign-text {
+	margin: 3px 0;
 }
 
 .user-login {
