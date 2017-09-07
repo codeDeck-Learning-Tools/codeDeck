@@ -62,12 +62,12 @@ body {
 }
 
 .git-header {
-	background: orange;
+	background: #f05135;
 	margin: 1px;
 }
 
 .css-header {
-	background: blue;
+	background: #0071b8;
 	margin: 1px;
 }
 
@@ -168,15 +168,21 @@ p.tagLine {
 	height: 272px;
 }
 
+#gitdeck:hover {
+    cursor: pointer;
+}
+
 /* Card Review Page CSS */
 
 .card-front {
 	height: 164px;
+	font-size: 1.4em;
+	overflow: hidden;
 }
 
 .front,
 .back {
-	border: 8px solid #0c8385;
+	border: 8px solid #f05135;
 	border-radius: 25px;
 }
 

@@ -68,7 +68,7 @@ function getCardElement(front, back = false) {
     // add styling as needed to the outer div containing the card sides
     var cardCss = {
         "border-radius": "25px",
-        "background": "green",
+        "background": "#913400",
         "height": "250px"
         // "width": "450px"
     };
