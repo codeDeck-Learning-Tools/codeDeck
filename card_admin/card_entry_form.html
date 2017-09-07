@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="skeleton.css">
   <style>
     /* remove card button */
+    .btnEdit, 
     .btnRemove {      
       margin: 0;
       line-height: 20px;
@@ -93,31 +94,31 @@
       <h5>Meta</h5>
       <div class="row">
         <div class="six columns">
-          <label for="txtTopic">Topic</label>
-          <input class="u-full-width" type="text" placeholder="topic" id="txtTopic">
+          <label for="txtEditTopic">Topic</label>
+          <input class="u-full-width" type="text" placeholder="topic" id="txtEditTopic">
         </div>
         <div class="six columns">
-          <label for="txtAuthor">Author</label>
-          <input class="u-full-width" type="text" placeholder="name" id="txtAuthor">
+          <label for="txtEditAuthor">Author</label>
+          <input class="u-full-width" type="text" placeholder="name" id="txtEditAuthor">
         </div>
       </div>
       <div class="row">
-        <label for="txtTags">Tags
+        <label for="txtEditTags">Tags
           <span class="label-body">Separate each tag with a space.</span>
         </label>
-        <input class="u-full-width" type="text" placeholder="git merge..." id="txtTags">
+        <input class="u-full-width" type="text" placeholder="git merge..." id="txtEditTags">
       </div>
     
       <!-- front of card -->
       <h5>Front</h5>
-      <label for="txtFront">Text (git command)</label>
-      <input class="u-full-width" type="text" placeholder="git merge..." id="txtFront">
+      <label for="txtEditFront">Text (git command)</label>
+      <input class="u-full-width" type="text" placeholder="git merge..." id="txtEditFront">
       
       <!-- back of card -->
       <h5>Back</h5>
-      <label for="txtBack">Text (clue or question)</label>
-      <textarea class="u-full-width" placeholder="What is..." id="txtBack"></textarea>    
-      <input class="button-primary" type="submit" value="Add" id="btnSubmit">
+      <label for="txtEditBack">Text (clue or question)</label>
+      <textarea class="u-full-width" placeholder="What is..." id="txtEditBack"></textarea>    
+      <input class="button-primary" type="submit" value="Save" id="btnEditSave">
     </form>
   </div>
 </div>
@@ -135,7 +136,8 @@
                 <th>Back</th>
                 <th>Author</th>
                 <th>Tags</th>
-                <th>Delete</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody id="tblCards">
@@ -191,6 +193,11 @@ database.addCard = function(card) {
 database.removeCard = function(key) {
   refCards.child(key).remove();
 }
+
+// updates a card in the database
+database.setCard = function(key, card) {
+  refCards.child(key).set(card);
+};
 
 // listen for changes in the cards data
 refCards.on("value", function(snapCards) {
@@ -248,6 +255,7 @@ var table = {
   // Creates a row and returns it as a jquery object
   newRow: function(card, key="") {
     var $row = $("<tr>");
+    var $btn;
 
     // add data to row
     $("<td>").appendTo($row).text(card.topic);
@@ -256,14 +264,24 @@ var table = {
     $("<td>").appendTo($row).text(card.author);
     $("<td>").appendTo($row).text(card.tags);
 
+    // add edit button
+    $btn = $("<button>")
+      .html('&#9999;')
+      .attr({
+        class: "btnEdit",
+        'data-key': key
+    });
+    $("<td>").appendTo($row).append($btn);
+
     // add remove button
-    var $btn = $("<button>")
+    $btn = $("<button>")
       .text('x')
       .attr({
         class: "btnRemove",
         'data-key': key
     });
     $("<td>").appendTo($row).append($btn);
+
 
     return $row;
   },
@@ -296,17 +314,137 @@ $(document).ready(function() {
         form.submit();
     });
 
-    // listen for click on remove button
+    // listen for click on remove and edit buttons
     $("tbody").on("click", function(event) {
-      // get the key
-      var key = $(event.target).attr("data-key");
+      $target = $( event.target );
 
-      // TODO ask user to confirm removing the card
+      // firebase key for the card
+      var key = $target.attr("data-key");
 
-      // remove card from database
-      database.removeCard(key);
+      // determine if a remove card button was clicked
+      if ( $target.hasClass("btnRemove") ) {
+
+        // TODO ask user to confirm removing the card
+        database.removeCard(key);
+
+      // edit button was clicked
+      } else if ( $target.hasClass("btnEdit") ) {
+        var $row = $target.closest("tr");
+        var card = {
+            topic: $row.children().eq(0).text().trim(),
+            author: $row.children().eq(3).text().trim(),
+            tags: $row.children().eq(4).text().trim(),
+            front: {
+                text: $row.children().eq(1).text().trim()
+            },
+            back: {
+                text: $row.children().eq(2).text().trim()
+            }
+        };
+
+        // open the edit modal for the card
+        editModal.open( key, card );
+      }
+
     });
 });
+
+/*
+    ----- edit card modal -----
+*/
+
+var editModal = ( function() {
+  // Get the modal
+  var modal = $('#editCardModal').get();
+
+  // TODO: Get the button that opens the modal
+  // var btn = document.getElementById("myBtn");
+  
+  // Get the <span> element that closes the modal
+  var $close = $(".close");
+
+  // get the save button
+  $btnSave = $("#btnEditSave");
+
+  var openCard = {};
+  var openKey;
+
+  var closeModal =  function () {
+    $(modal).hide();
+  }
+
+  var initModal = function () {
+    // set event listeners
+    // When the user clicks on <span> (x), close the modal
+    $close.on("click", function() {
+      closeModal();
+    } );
+/*
+    // When the user clicks anywhere outside of the modal, close it
+    $(window).on( "click", function(event) {
+      // if the user clicks the modal (not the inner container)
+      if (event.target == modal) {
+          closeModal();
+      }
+    });*/
+
+    // When the user clicks the save button ...
+    $btnSave.on("click", function(event) {
+      event.preventDefault();
+      // get the input
+      openKey = $(modal).find("form").attr("data-key");
+      openCard = {
+        topic: $("#txtEditTopic").val().trim(),
+        author: $("#txtEditAuthor").val().trim(),
+        tags: $("#txtEditTags").val().trim(),
+        front: {
+            text: $("#txtEditFront").val().trim()
+        },
+        back: {
+            text: $("#txtEditBack").val().trim()
+        }
+      };
+      // save the changes to the database
+      database.setCard(openKey, openCard);
+
+      // cose the modal
+      closeModal();
+
+    });
+  };
+
+  // render the card data in the form fields
+  var renderCard = function( key, card ) {
+
+    // set the values for openCard
+    openCard = card;
+    openKey = key;
+
+    // populate the form
+    $(modal).find("form").attr("data-key", openKey);
+    $("#txtEditTopic").val(openCard.topic);
+    $("#txtEditAuthor").val(openCard.author);
+    $("#txtEditTags").val(openCard.tags);
+    $("#txtEditFront").val(openCard.front.text);
+    $("#txtEditBack").val(openCard.back.text);
+  };
+
+  return {
+    close: closeModal,
+    init: initModal,
+
+    // Populate form data and show the modal
+    open: function( key, card ) {
+      // populate the form
+      renderCard( key, card );
+      $( modal ).show();
+      }
+    }
+} )();
+
+// initialize the modal
+editModal.init();
+
 </script>
 </body>
 </html>
