@@ -29,9 +29,9 @@
         q:       type string   - search term or terms
         success: type function - callback for ajax response
 */
-function ajaxWikiExtracts ( q, success ) {
+function ajaxWikiExtracts(q, success) {
     var apiUrl = 'https://en.wikipedia.org/w/api.php';
-    $.ajax( {
+    $.ajax({
         'url': apiUrl,
         'dataType': 'jsonp',
 
@@ -56,23 +56,23 @@ function ajaxWikiExtracts ( q, success ) {
         },
 
         // success function passed to method
-        'success': function ( response ) {
+        'success': function (response) {
             // console.log("response received");
             var articles = [];
 
-            $.each( response.query.pages, function () {
+            $.each(response.query.pages, function () {
                 var url = encodeURI(
-                    'https://en.wikipedia.org/wiki/' + this.title );
-                articles.push( {
+                    'https://en.wikipedia.org/wiki/' + this.title);
+                articles.push({
                     'title': this.title,
                     'text': this.extract,
                     'url': url
-                } );
-            } );
-            success( articles );
+                });
+            });
+            success(articles);
         },
-        'error': function ( err ) {
-            console.log( 'wpAPI Error:', err );
+        'error': function (err) {
+            console.log('wpAPI Error:', err);
         }
-    } );
+    });
 }
