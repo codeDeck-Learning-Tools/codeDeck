@@ -145,11 +145,11 @@ function renderCard(containerId, card, reverse = false) {
 // Renders end of deck view in card container. Returns element.
 function renderEndOfDeck(containerId) {
 
-    var endOfDeckText = "End of Deck";
+    var endOfDeckText = "You made it!";
 
     return $("#" + containerId)
         .empty()
-        .append("<div class='end-deck'><p>" + endOfDeckText + "</p></div>")
+        .append("<div class='end-deck'><p class='end-box'>" + endOfDeckText + "</p></div>")
         // reset deck button
         .append("<button id='" + resetDeckBtnId +
             "' class='btn btn-default pull-right'>Reset</button>")
