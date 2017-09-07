@@ -21,7 +21,7 @@ var cards;
 // ids for content containers
 var cardContainerId = "card-container";
 var wikiContainerId = "wiki-links";
-var reestDeckBtnId = "reset-deck";
+var resetDeckBtnId = "reset-deck";
 
 // active card pulled from the deck
 var currentCard;
@@ -69,13 +69,13 @@ function initDeck() {
 function getCardElement ( front, back = false ) {
     // add styling as needed to the outer div containing the card sides
     var cardCss = {
-        // "border-radius": "25px",
+        "border-radius": "25px",
         "background": "green",
-        "height": "250px",
+        "height": "250px"
         // "width": "450px"
     };
     var btnClass = 'btn btn-primary'
-        + ' btn-sm pull-right';
+        + ' btn-sm pull-right next-btn';
 
     // jquery objects for elements
     var $cardDiv = $( '<div>' );
@@ -96,13 +96,13 @@ function getCardElement ( front, back = false ) {
     // add styling and properties to each side of the card
     // front
     $( '<div>' )
-        .text( front )
+        .append ( $("<p class='card-front'>").text(front) )
         .append( $btn.clone() )
         .css({'padding':'20px'})
         .appendTo( $front );
     // back
     $( '<div>' )
-        .text( back )
+        .append ( $("<p class='card-front'>").text(back) )
         .append( $btn )        
         .css({'padding':'20px'})
         .appendTo( $back );
@@ -147,9 +147,9 @@ function renderEndOfDeck( containerId ) {
 
     return $("#" + containerId )
         .empty()
-        .append( "<p>" + endOfDeckText + "</p>" )
+        .append( "<div class='end-deck'><p>" + endOfDeckText + "</p></div>" )
         // reset deck button
-        .append( "<button id='" + reestDeckBtnId 
+        .append( "<button id='" + resetDeckBtnId 
             + "' class='btn btn-default pull-right'>Reset</button>" )
         .get();
 }
@@ -200,7 +200,7 @@ $( document ).ready( function() {
         // ... listen for click events on the card container
         $( "#" + cardContainerId ).on( 'click', function( e ) {
             // if reset deck button is clicked
-            if ( e.target.id === reestDeckBtnId ) {
+            if ( e.target.id === resetDeckBtnId ) {
 
                 // reset the deck and shuffle
                 initDeck();

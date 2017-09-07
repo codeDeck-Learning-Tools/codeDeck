@@ -2,6 +2,12 @@
 <html lang="en">
 
 <head>
+<!-- 
+
+    ### this is a temporary file for testing the giphyAPI ###
+
+-->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,34 +15,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <script type="text/javascript" href="assets/javascript/giphyAPI.js"></script>
 
 
   <title>codeDeck Review</title>
 
-  <script>
-      /**
-       * Be sure they are logged in
-       */
-      var user = localStorage.getItem('user');
-  
-      try{
-        user = JSON.parse(user);
-      } catch (e) {
-        //Handle error
-      }
-      
-      if(!user.email){
-        localStorage.setItem('alert', JSON.stringify({
-          'type': 'error', 
-          'title': 'Login Error', 
-          'text': 'You must be logged into view this page.'}
-        ));
-  
-        document.location = 'sign.html';
-      } 
-      
 
-    </script>
 
 </head>
 
@@ -104,7 +88,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">codeDeck <span class="logo-color">&#9824;</span></a>
+        <a class="navbar-brand" href="index.html">codeDeck &#9824;</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -114,7 +98,7 @@
 
           <li>
               <a href="#contactModal" data-toggle="modal">
-              <i class="fa fa-contact"></i>
+              <i class="fa fa-contact "></i>
               <span class="network-name">Contact</span>
               </a>
           </li>
@@ -129,12 +113,12 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-lg-8 col-sm-12">
-        <div id="deck-panel" class="panel panel-primary">
-          <div id="sign-heading" class="panel-heading">
+      <div class="col-lg-8">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
 
             <h3 class="panel-title"><strong>
-            GitDeck :
+            Cards for Review Generate Here
             </strong></h3>
 
           </div>
@@ -149,9 +133,9 @@
       </div>
 
 
-      <div class="col-lg-4 col-sm-12">
-        <div id="deck-panel" class="panel panel-primary">
-          <div id="sign-heading" class="panel-heading">
+      <div class="col-lg-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
             <h3 class="panel-title"><strong>Adsense</strong></h3>
           </div>
 
@@ -167,11 +151,28 @@
         </div>
       </div>
     </div>
-
     <div class="row">
-      <div class="col-lg-8 col-sm-12">
-        <div id="deck-panel" class="panel panel-primary">
-          <div id="sign-heading" class="panel-heading">
+      <div class="col-lg-8">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Card Interaction Buttons</strong></h3>
+          </div>
+          <div class="panel-body">
+            <table>
+              <tr>
+                <td id="gif1"></td>
+                <td id="gif2"></td>
+                <td id="gif3"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
             <h3 class="panel-title"><strong>Need Additional Resources? Check these out!</strong></h3>
           </div>
 
@@ -192,10 +193,8 @@
 
   <!-- FOOTER -->
   <div class="suites">
-  <span class="logo-color">
   &clubs;
   &spades;
-  </span>
   &hearts;
   &diams;
   </div>
@@ -208,7 +207,8 @@
 <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 <script src="assets/javascript/deck.lib.js"></script>
 <script src="assets/javascript/wikiAPI.js"></script>
-<script src="assets/javascript/review.js"></script>
+<script src="assets/javascript/giphyAPI.js"></script>
+<script src="assets/javascript/review.js"></script>   
 <script src="assets/javascript/common.js"></script> 
 <script src="assets/javascript/firebase.js"></script>
 <script src="assets/javascript/contact.js"></script> 

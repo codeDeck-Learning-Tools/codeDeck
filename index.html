@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -22,10 +23,11 @@
 
         <h4 class="modal-title">Contact</h4>
       </div>
+
       <div class="modal-body">
         <div class="containter">
           <div class="row">
-          <form class="form-horizontal" name="commentform" method="post" action="send_form_email.php">
+          <form class="form-horizontal" name="commentform">
 
           <div class="col-xs-8">
             <div class="form-group">
@@ -38,7 +40,7 @@
           <div class="form-group">
               <label for="InputEmail" class="col-lg-4 control-label">Email</label>
               <div class="col-lg-8">
-                  <input type="email" class="form-control" id="email" name="email"  required  >
+                  <input type="email" class="form-control" id="emailForm" name="email"  required  >
               </div>
           </div>
 
@@ -49,7 +51,7 @@
               </div>
           </div>
                       
-          <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+          <input type="button" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
           </div>
 
           </form>
@@ -76,7 +78,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">codeDeck &#9824;</a>
+        <a class="navbar-brand" href="index.html">codeDeck <span class="logo-color">&#9824;</span></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -91,7 +93,6 @@
           </li>
 
           <li><a href="sign.html">Sign On</a></li>
-          <li><a href="#">Log Off</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -106,24 +107,25 @@
       <h1><strong>Stack the odds in your favor!</strong></h1>
       
       <div class = "about-us">
-        <p>Interested in learning code? Overwhelmed by the amount of information to learn? We've got a tool for you! 
+        <p class="tagLine">Interested in learning code? Overwhelmed by the amount of information to learn? We've got a tool for you! 
         </p>
 
-        <p>
+        <p class="tagLine">
         Blending the old with the new, codeDeck is an interactive educational flash card game! Try our first GIT deck, or checkout other Decks soon to come!
         </p>
       </div>
 
     </div>
 
-    <div class = "sample">
+    <div class = "lineup">
       <h1>Decks Available</h1>
     </div>
 
     <div class="row">
-      <div class="col-lg-6 col-sm-12">
+
+      <div class="col-lg-4 col-sm-12">
         <div class="panel panel-primary">
-          <div class = "github-deck">
+          <div class = "deck-header">
             <div class="panel-heading">
               <h3 class="panel-title"><strong>Github - 31 Cards</strong></h3>
             </div>
@@ -138,17 +140,44 @@
               </form>
             </div>
           </div>
-
         </div>
       </div>
+
+      <div class="col-lg-4 col-sm-12">
+        <div class="panel panel-primary">
+          <div class = "deck-header">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>CSS - Coming Soon!</strong></h3>
+            </div>
+
+            <div class="panel-body">
+              <form>
+                <div>
+                  <p>
+                  See yourself as a future front-end designer? Not sure how to decorate your website into what you envision? CSS will help you beautify your website!
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class = "lineup">
+      <h1>About Us:</h1>
+      <p>codeDeck was created in the fall 2017 coding bootcamp by John Desrosiers, Julie Ching, Teddy Hidalgo, and Philip Ma. We apologize for the ads and hope you can put up with them. It allows us to pay the bills for the website so our users can continue to enjoy the content for free!</p>
     </div>
     
   </div>
 
   <!-- FOOTER -->
   <div class="suites">
+  <span class="logo-color">
   &clubs;
   &spades;
+  </span>
   &hearts;
   &diams;
   </div>
@@ -157,8 +186,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-  <!-- <script src= "assets/javascript/logic.js"></script> -->
+  <script src="assets/javascript/firebase.js"></script>
+  <script src="assets/javascript/contact.js"></script> 
 
 </body>
 

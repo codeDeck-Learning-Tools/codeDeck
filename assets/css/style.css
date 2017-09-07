@@ -4,6 +4,10 @@
 	border: black;
 }
 
+.logo-color {
+	color: #4eacc2;
+}
+
 .navbar-default .navbar-brand {
 	font-family: 'Roboto', sans-serif;
 	color: white;
@@ -77,20 +81,33 @@ body {
 	font-size: 18px;
 }
 
-.sample h1 {
+.lineup {
 	padding: 0 15px 0 15px;
 }
 
-.github-deck {
+.lineup p {
+	color: hsla(0, 0%, 100%, .61);
+}
+
+.deck-header {
 	background: green;
 	margin: 1px;
 }
 
+.deck-header p {
+	color: hsla(0, 0%, 100%, .61)
+}
+
 /* Sign In Page CSS */
-/* PNotify for Login Errors */
 #sign-on {
 	margin: auto; 
 	max-width: 400px;
+	border-color: #0c8385;
+}
+
+.panel-primary>#sign-heading {
+	background: #0c8385;
+	border-color: #0c8385;
 }
 
 .panel-body {
@@ -105,41 +122,55 @@ body {
 	float: left;
 }
 
+#sign-btn {
+	background-color: #0c8385;
+	border-color: #005557;
+}
+
 .google-authenticate {
 	height: 36px;
 	padding: 0 8px;
 }
 
-.ui-pnotify-container {
-    background-color: #EE6161 !important;
-    background-image: none !important;
-    border: none !important;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-}
-
 /* Deck Selection Page CSS */
-.gitdeck {
-	height: 200px;
+#deck-panel {
+	border-color: #0c8385;
 }
 
-.wrapper {
-	width: 50%;
-	text-align: center;
-}
-
-.panel-body .deck1 {
-	color: white;
-	font-size: 18px;
-	padding: 0 12px 0;
+.panel-primary>#sign-heading {
+	background: #0c8385;
+	border-color: #0c8385;
 }
 
 /* Card Review Page CSS */
-.panel.panel-default.front {
-	background: black;
+.card-front {
+	height: 150px;
 }
 
-.panel.panel-default.back {
-	background: black;
+.front,
+.back {
+	border: 8px solid #0c8385;
+    border-radius: 25px;
+}
+
+.next-btn {
+	background-color: black;
+	border-color: grey;
+}
+
+.end-deck {
+	height: 216px;
+}
+
+#wiki-links a {
+	color: white;
+} 
+
+#wiki-links p {
+	color: hsla(0, 0%, 100%, .61);
+}
+
+.next-btn:hover {
+	background: #0c8385;
+	border-color: #0c8385;
 }

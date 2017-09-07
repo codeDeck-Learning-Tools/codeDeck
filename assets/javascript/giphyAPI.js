@@ -1,49 +1,40 @@
-// to be moved into logic.js with the rest of the js
-// parameters q - search query term or phrase
-// limit - number of results to return. default 25
-// offset - results offset, default 0
-// rating - (y, g, pg, pg-13, r)
-// fmt - return results in html or json format
+/*
+	Calls to Giphy's API for gifs to display to the user
+	upon reaching a progress checkpoint.
+*/
 
-// pseudocode
-// make giphy object with set parameters for ajax call to giphy
-// GET url from 3 gif objects, pass to function
-// modify images object to have fixed format
-// run function when card counter function exceeds x
+var giphyGIF = {
+	apiKey: "f3971dc19c6240feab39b26de85716d1",
+  host: "https://api.giphy.com/v1/gifs/search?q=",
+  limit: 3,
+  ratingLimit: "pg-13",
 
-var giphy = {
-    'apiKey': 'f3971dc19c6240feab39b26de85716d1',
-    'host': 'https://api.giphy.com',
-    'limit': 3,
-    'ratingLimit': 'pg-13',
+	// invokes the ajax request, and displays it on the user's page
+  search: function() {
+    var queryURL = "https://api.giphy.com/v1/gifs/search?";
 
-    'search': function ( searchString ) {
-        var path = '/v1/gifs/search?';
-        var queryURL = 'https://api.giphy.com/v1/gifs/search?';
+    // compile search parameters
+    queryURL += $.param({
+      api_key: this.apiKey,
+      q: "congratulations",
+      limit: this.limit,
+      rating: this.ratingLimit
+    });
 
-        if ( typeof searchString !== 'string' ||
-   searchString.length === 0 ) {
-            return false;
-        }
+		// done response also takes the url's from the results array objects, then puts them into the html
+    return $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).done(function(response) {
+      var results = response.data;
 
-        queryURL += $.param( {
-            'api_key': this.apiKey,
-            'q': searchString,
-            'limit': this.limit,
-            'rating': this.ratingLimit
-        } );
+      console.log(results);
 
-        return $.ajax( {
-            'url': queryURL,
-            'method': 'GET'
-        } );
-    }
+			$("#gif1").html('<img src="' + results[0].images.fixed_height.url + '">');
+			$("#gif2").html('<img src="' + results[1].images.fixed_height.url + '">');
+			$("#gif3").html('<img src="' + results[2].images.fixed_height.url + '">');
+    });
+  }
 };
 
-// GET images object from within api-returned gif object, maybe fixed_width object (200px width, good for mobile)
-
-var gifRender = {
-
-};
-
-// event handler. run function if card counter points count > x
+giphyGIF.search();
