@@ -6,18 +6,230 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
-  <title>codeDeck Card Review</title>
+
+  <title>codeDeck Review</title>
+
+  <script>
+    /**
+     * Be sure they are logged in
+     */
+    var user = localStorage.getItem('user');
+
+    try {
+      user = JSON.parse(user);
+    } catch (e) {
+      // invalid or undefined 'user' in local storage
+    }
+
+    if (!user || !user.email) {
+      localStorage.setItem('alert', JSON.stringify({
+        'type': 'error',
+        'title': 'Login Error',
+        'text': 'You must be logged in to view this page.'
+      }));
+
+      document.location = 'sign.html';
+    }
+  </script>
 </head>
-
-
-<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 <body>
 
-</body>
+  <!-- Modal -->
+  <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
+          <h1 class="modal-title">
+          Hey friend.
+          </h1>
+          <h4>
+          Thanks for stopping by, 
+          have feedback for us?
+          </h4>
+        </div>
+
+        <div class="modal-body">
+          <div class="containter">
+            <div class="row">
+              <form class="form-horizontal" name="commentform">
+
+                <div class="col-sm-9 col-xs-10">
+                  <div class="form-group">
+                    <label for="InputName" class="col-sm-2 control-label">Name:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="first_name" id="first_name" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="InputEmail" class="col-sm-2 control-label">Email:</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="emailForm" name="email" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="InputMessage" class="col-sm-2 control-label">Message:</label>
+                    <div class="col-sm-10">
+                      <textarea name="comments" id="comments" class="form-control" rows="5" required></textarea>
+                    </div>
+                  </div>
+
+                  <input type="button" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">codeDeck <span class="logo-color">&#9824;</span></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li>
+            <a href="#contactModal" data-toggle="modal">
+              <i class="fa fa-contact"></i>
+              <span class="network-name">Contact</span>
+              </a>
+          </li>
+          <li><a href="deck.html">Decks</a></li>
+          <li class="logOff"><a href="javascript:;">Log Off</a></li>
+
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- container-fluid -->
+  </nav>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-8 col-sm-12">
+        <div id="deck-panel" class="panel panel-primary">
+          <div id="sign-heading" class="panel-heading">
+
+            <h3 class="panel-title"><strong>
+            GitDeck :
+            </strong></h3>
+
+          </div>
+
+          <div class="panel-body">
+            <div id="card-container">
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-sm-12">
+        <div id="deck-panel" class="panel panel-primary">
+          <div id="sign-heading" class="panel-heading">
+            <h3 class="panel-title"><strong>Adsense</strong></h3>
+          </div>
+
+          <div class="panel-body">
+            <form>
+              <div>
+                <p>
+                  All the Ads
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8 col-sm-12">
+        <div id="deck-panel" class="panel panel-primary">
+          <div id="sign-heading" class="panel-heading">
+            <h3 class="panel-title"><strong>Need Additional Resources? Check these out!</strong></h3>
+          </div>
+
+          <div id="wiki-links" class="panel-body">
+            <form>
+              <div>
+                <p>
+                  All the Wikipedia
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="gifModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel">Great Job!</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="giphy-body" class="modal-body">
+            <div id="gif1">gif1</div>
+            <div id="gif2">gif2</div>
+            <div id="gif3">gif3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="suites">
+    <span class="logo-color">
+  &clubs;
+  &spades;
+  </span> &hearts; &diams;
+  </div>
+  <div class="footer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <script src="assets/javascript/deck.lib.js"></script>
+  <script src="assets/javascript/wikiAPI.js"></script>
+  <script src="assets/javascript/common.js"></script>
+  <script src="assets/javascript/firebase.js"></script>
+  <script src="assets/javascript/contact.js"></script>
+  <script src="assets/javascript/review.js"></script>
+</body>
 </html>
