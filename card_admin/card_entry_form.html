@@ -81,11 +81,52 @@
       <textarea class="u-full-width" placeholder="What is..." id="txtBack"></textarea>    
       <input class="button-primary" type="submit" value="Add" id="btnSubmit">
     </form>
+
+  <!-- Edit Card Form
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div id="editCardModal">
+  <div class="modalContent">
+    <form id="editCardForm">
+      <span class="close">&times;</span>
+      <h2>Edit Card</h2>
+      <!-- card meta inputs -->
+      <h5>Meta</h5>
+      <div class="row">
+        <div class="six columns">
+          <label for="txtTopic">Topic</label>
+          <input class="u-full-width" type="text" placeholder="topic" id="txtTopic">
+        </div>
+        <div class="six columns">
+          <label for="txtAuthor">Author</label>
+          <input class="u-full-width" type="text" placeholder="name" id="txtAuthor">
+        </div>
+      </div>
+      <div class="row">
+        <label for="txtTags">Tags
+          <span class="label-body">Separate each tag with a space.</span>
+        </label>
+        <input class="u-full-width" type="text" placeholder="git merge..." id="txtTags">
+      </div>
+    
+      <!-- front of card -->
+      <h5>Front</h5>
+      <label for="txtFront">Text (git command)</label>
+      <input class="u-full-width" type="text" placeholder="git merge..." id="txtFront">
+      
+      <!-- back of card -->
+      <h5>Back</h5>
+      <label for="txtBack">Text (clue or question)</label>
+      <textarea class="u-full-width" placeholder="What is..." id="txtBack"></textarea>    
+      <input class="button-primary" type="submit" value="Add" id="btnSubmit">
+    </form>
+  </div>
+</div>
+
+    <!-- Cards table
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <p>
       Total cards: <span id="totalCards"></span>
     </p>
-    <!-- Cards table
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <table class="u-full-width">
         <thead>
             <tr>
