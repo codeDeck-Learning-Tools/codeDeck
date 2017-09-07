@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.css">
-  <link rel="stylesheet" href="assets/css/style.css"> 
+  <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 
@@ -16,97 +16,96 @@
 
 <body>
 
-<!-- Modal -->
-<div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <!-- Modal -->
+  <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-        <h4 class="modal-title">Contact</h4>
-      </div>
-      <div class="modal-body">
-        <div class="containter">
-          <div class="row">
-          <form class="form-horizontal" name="commentform">
+          <h4 class="modal-title">Contact</h4>
+        </div>
+        <div class="modal-body">
+          <div class="containter">
+            <div class="row">
+              <form class="form-horizontal" name="commentform">
 
-          <div class="col-xs-8">
-            <div class="form-group">
-              <label for="InputName" class="col-lg-4 control-label">Name</label>
-              <div class="col-lg-8">
-                  <input type="text" class="form-control" name="first_name" id="first_name"  required>
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <label for="InputName" class="col-lg-4 control-label">Name</label>
+                    <div class="col-lg-8">
+                      <input type="text" class="form-control" name="first_name" id="first_name" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="InputEmail" class="col-lg-4 control-label">Email</label>
+                    <div class="col-lg-8">
+                      <input type="email" class="form-control" id="emailForm" name="email" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="InputMessage" class="col-lg-4 control-label">Message</label>
+                    <div class="col-lg-8">
+                      <textarea name="comments" id="comments" class="form-control" rows="5" required></textarea>
+                    </div>
+                  </div>
+
+                  <input type="button" name="submit" id="submitForm" value="Submit" class="btn btn-info pull-right">
+                </div>
+
+              </form>
+
+              <div class="col-xs-4 text-right">
+                <img class="logo" src="assets/images/codeDeckLogoV2.png" alt="codeDeck Icon" style="height:180px">
               </div>
-          </div>
 
-          <div class="form-group">
-    <label for="InputEmail" class="col-lg-4 control-label">Email</label>
-    <div class="col-lg-8">
-        <input type="email" class="form-control" id="emailForm" name="email"  required  >
-    </div>
-</div>
-
-          <div class="form-group">
-              <label for="InputMessage" class="col-lg-4 control-label">Message</label>
-              <div class="col-lg-8">
-                  <textarea name="comments" id="comments" class="form-control" rows="5" required></textarea>
-              </div>
-          </div>
-                      
-          <input type="button" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
-          </div>
-
-          </form>
-
-          <div class="col-xs-4 text-right">
-              <img class="logo" src="assets/images/codeDeckLogoV2.png" alt="codeDeck Icon" style="height:180px">
-          </div>
-
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-            aria-expanded="false">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-          <a class="navbar-brand" href="index.html">codeDeck <span class="logo-color">&#9824;</span></a>
-        </div>
+        <a class="navbar-brand" href="index.html">codeDeck <span class="logo-color">&#9824;</span></a>
+      </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-          <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
 
-            <li>
-              <a href="#contactModal" data-toggle="modal">
+          <li>
+            <a href="#contactModal" data-toggle="modal">
               <i class="fa fa-contact "></i>
               <span class="network-name">Contact</span>
               </a>
-            </li>
+          </li>
 
-            <li><a href="sign.html">Sign On</a></li>
-            <!-- <li><a href="#">Log Off</a></li> -->
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+          <li><a href="sign.html">Sign On</a></li>
+        </ul>
       </div>
-      <!-- /.container-fluid -->
-    </nav>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
 
-    <div class="container">
+  <div class="container">
 
     <div class="row">
-      <div class="col-lg-12 col-sm-12" >
+      <div class="col-lg-12 col-sm-12">
         <div id="sign-on" class="panel panel-primary">
           <div id="sign-heading" class="panel-heading">
             <h3 class="panel-title"><strong>Authentication Details</strong></h3>
@@ -134,7 +133,7 @@
 
               <!-- If Authenticated, go to deck.html -->
               <div class="user-login">
-                <button id="sign-btn" class="btn btn-primary" type="button" id="submit-info">Submit</button>
+                <button class="btn btn-primary" type="button" id="submit-info">Submit</button>
               </div>
 
               <!-- <button class="btn btn-primary" type="google" id="submit-info">Google Sign Placeholder</button> -->
@@ -152,14 +151,12 @@
 
   <!-- FOOTER -->
   <div class="suites">
-  <span class="logo-color">
+    <span class="logo-color">
   &clubs;
   &spades;
-  </span>
-  &hearts;
-  &diams;
+  </span> &hearts; &diams;
   </div>
-  <div class="footer"></div> 
+  <div class="footer"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
@@ -168,123 +165,128 @@
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="assets/javascript/firebase.js"></script>
   <script src="assets/javascript/contact.js"></script>
-  <script src="assets/javascript/common.js"></script> 
+  <script src="assets/javascript/common.js"></script>
 
   <script>
-$( '#signIn' ).on( 'click', click );
-$( '#submit-info' ).on( 'click', pass );
+    $('#signIn').on('click', click);
+    $('#submit-info').on('click', pass);
+    
+    /**
+     * Check for signin errors
+     */
+    var alertMessage = localStorage.getItem('alert');
 
-/**
- * Check for signin errors
- */
-var alertMessage = localStorage.getItem('alert');
-
-if(alertMessage){
-    try {
+    if (alertMessage) {
+      try {
         alertMessage = JSON.parse(alertMessage);
+        PNotify.prototype.options.styling = "bootstrap3";
         new PNotify(alertMessage);
         localStorage.removeItem('alert');
-    } catch (e) {
+      } catch (e) {
+        PNotify.prototype.options.styling = "bootstrap3";
         new PNotify({
-            type: 'error',
-            title: 'Login Error',
-            text: 'There was an unknown error during login.'
+          type: 'error',
+          title: 'Login Error',
+          text: 'There was an unknown error during login.'
         })
+      }
     }
-}
 
-function click () {
+    function click() {
       var provider = new firebase.auth.GoogleAuthProvider();
 
       // You can add additional scopes to the provider:
-      provider.addScope( 'email' );
+      provider.addScope('email');
 
-      firebase.auth().signInWithPopup( provider ).then( function siPop ( result ) {
-            var token = result.credential.accessToken;
-            localStorage.setItem( 'token', token );
-            // The signed-in user info.
-            var user = result.user;
-            localStorage.setItem( 'user', JSON.stringify( {
-                email: user.email,
-                name: user.displayName
-            } ) );
-            
-            logLogin();
+      firebase.auth().signInWithPopup(provider).then(function siPop(result) {
+        var token = result.credential.accessToken;
+        localStorage.setItem('token', token);
+        // The signed-in user info.
+        var user = result.user;
+        localStorage.setItem('user', JSON.stringify({
+          email: user.email,
+          name: user.displayName
+        }));
+        
+        logLogin();
 
-            // retrive the cards from the database
-            database.getCards( function ( cards ) {
-                if ( cards && Array.isArray( cards ) ) {
-                    localStorage.setItem( 'cards', JSON.stringify( cards ) );
-                    document.location = 'deck.html';
-                }
-    } );
-      } ).catch( function errorCB ( error ) {
-          new PNotify({
-            title: "Login Error",
-            text: "Google authentication failed.",
-            type: "error"
-          });
-      } );
-};
-
-/*
-Sign-in
-  -----------------------------------------------------------------
-
-  Checking for all requirements prior to passing to deck.html
-*/
-
-function pass () {
-      if (
-        $( '#first-name' ).val() &&
-        $( '#last-name' ).val() &&
-        $( '#email' ).val() ) 
-        {
-              // get cards from firebase
-              database.getCards( function ( cards ) {
-                  if ( cards && Array.isArray( cards ) ) {
-                      // store cards in local storage
-                      localStorage.setItem( 'cards', JSON.stringify( cards ) );
-                      localStorage.setItem('user', JSON.stringify({
-                          email: $( '#email' ).val(),
-                          name: $( '#first-name' ).val() + ' ' + $( '#last-name' ).val()
-                      }));
-
-                      logLogin();
-                      
-                      // navigate to deck.html
-                      document.location = 'deck.html';
-                  }
-              } );
-      } else {
+        // retrive the cards from the database
+        database.getCards(function (cards) {
+          if (cards && Array.isArray(cards)) {
+            localStorage.setItem('cards', JSON.stringify(cards));
+            document.location = 'deck.html';
+          }
+        });
+      }).catch(function errorCB(error) {
         PNotify.prototype.options.styling = "bootstrap3";
         new PNotify({
-            title: "Login Error",
-            text: "Please complete all required fields",
-            type: "error"
-          });
+          title: "Login Error",
+          text: "Google authentication failed.",
+          type: "error"
+        });
+      });
+    };
+
+    /*
+    Sign-in
+      -----------------------------------------------------------------
+
+      Checking for all requirements prior to passing to deck.html
+    */
+
+    function pass() {
+      if (
+        $('#first-name').val() &&
+        $('#last-name').val() &&
+        $('#email').val()) {
+          console.log("here");
+        // get cards from firebase
+        database.getCards(function (cards) {
+          console.log("here2");
+          if (cards && Array.isArray(cards)) {
+            console.log("here3");
+            // store cards in local storage
+            localStorage.setItem('cards', JSON.stringify(cards));
+            localStorage.setItem('user', JSON.stringify({
+              email: $('#email').val(),
+              name: $('#first-name').val() + ' ' + $('#last-name').val()
+            }));
+
+            logLogin();
+
+            // navigate to deck.html
+            document.location = 'deck.html';
+          }
+        });
+      } else {
+        console.log("here4");
+        PNotify.prototype.options.styling = "bootstrap3";
+        new PNotify({
+          title: "Login Error",
+          text: "Please complete all required fields",
+          type: "error"
+        });
       }
-}
+    }
 
-function logLogin() {
-        /**
-     * Sign-in page that will save to firebase
-     * */
+    function logLogin() {
+      /**
+       * Sign-in page that will save to firebase
+       * */
 
-    var database = firebase.database();
-    database.reflog = database.ref( 'signOn' );
+      var database = firebase.database();
+      database.reflog = database.ref('signOn');
 
-    var user = JSON.parse(localStorage.getItem('user'));
+      var user = JSON.parse(localStorage.getItem('user'));
 
-    database.ref('signOn').push( {
+      database.ref('signOn').push({
         'name': user.name,
         'email': user.email,
         'dateAdded': firebase.database.ServerValue.TIMESTAMP
-    } );
-    
-    console.log(user);
-}
-</script>
+      });
+
+    }
+  </script>
 
 </body>
 
