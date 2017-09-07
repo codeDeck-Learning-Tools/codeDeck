@@ -55,7 +55,7 @@ function ajaxWikiExtracts(q, success) {
             success(articles);
         },
         'error': function (err) {
-            console.log('wpAPI Error:', err);
+            // wikipedia API request failed
         }
     });
 }

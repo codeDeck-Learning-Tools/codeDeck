@@ -163,6 +163,7 @@
   </div>
   <div class="footer"></div>
 
+  <!-- script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -173,6 +174,7 @@
   <script src="assets/javascript/common.js"></script>
 
   <script>
+    // set sigon event listeners
     $('#signIn').on('click', click);
     $('#submit-info').on('click', pass);
 
@@ -183,10 +185,14 @@
 
     if (alertMessage) {
       try {
+
+        // display sign on error
         alertMessage = JSON.parse(alertMessage);
         PNotify.prototype.options.styling = "bootstrap3";
         new PNotify(alertMessage);
         localStorage.removeItem('alert');
+
+      // handle all other other sign on errors
       } catch (e) {
         PNotify.prototype.options.styling = "bootstrap3";
         new PNotify({
@@ -203,16 +209,19 @@
       // You can add additional scopes to the provider:
       provider.addScope('email');
 
-      firebase.auth().signInWithPopup(provider).then(function siPop(result) {
-        var token = result.credential.accessToken;
-        localStorage.setItem('token', token);
-        // The signed-in user info.
-        var user = result.user;
-        localStorage.setItem('user', JSON.stringify({
-          email: user.email,
-          name: user.displayName
-        }));
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then( function siPop(result) {
+          var token = result.credential.accessToken;
+          localStorage.setItem('token', token);
 
+          // The signed-in user info.
+          var user = result.user;
+          localStorage.setItem('user', JSON.stringify({
+            email: user.email,
+            name: user.displayName
+          }));
         logLogin();
 
         // retrive the cards from the database
@@ -234,9 +243,9 @@
 
     /*
     Sign-in
-      -----------------------------------------------------------------
+    -----------------------------------------------------
 
-      Checking for all requirements prior to passing to deck.html
+    Checking for all requirements prior to passing to deck.html
     */
 
     function pass() {
@@ -244,9 +253,11 @@
         $('#first-name').val() &&
         $('#last-name').val() &&
         $('#email').val()) {
+
         // get cards from firebase
         database.getCards(function (cards) {
           if (cards && Array.isArray(cards)) {
+
             // store cards in local storage
             localStorage.setItem('cards', JSON.stringify(cards));
             localStorage.setItem('user', JSON.stringify({
@@ -260,6 +271,7 @@
             document.location = 'deck.html';
           }
         });
+
       } else {
         PNotify.prototype.options.styling = "bootstrap3";
         new PNotify({
@@ -270,25 +282,23 @@
       }
     }
 
+    // Saves login info to firebase
     function logLogin() {
-      /**
-       * Sign-in page that will save to firebase
-       * */
 
+      // get database references
       var database = firebase.database();
       database.reflog = database.ref('signOn');
 
+      // get user info
       var user = JSON.parse(localStorage.getItem('user'));
 
+      // add info to database
       database.ref('signOn').push({
         'name': user.name,
         'email': user.email,
         'dateAdded': firebase.database.ServerValue.TIMESTAMP
       });
-
     }
   </script>
-
 </body>
-
 </html>
