@@ -3,7 +3,7 @@
     ----------------------------------------------------------
 */
 
-$(".logOff").on("click", function (){
-        localStorage.clear();
-        document.location = 'index.html';
+$(".logOff").on("click", function () {
+    localStorage.clear();
+    document.location = 'index.html';
 });
