@@ -170,7 +170,7 @@
   <script>
     $('#signIn').on('click', click);
     $('#submit-info').on('click', pass);
-    
+
     /**
      * Check for signin errors
      */
@@ -207,7 +207,7 @@
           email: user.email,
           name: user.displayName
         }));
-        
+
         logLogin();
 
         // retrive the cards from the database
@@ -239,7 +239,7 @@
         $('#first-name').val() &&
         $('#last-name').val() &&
         $('#email').val()) {
-          console.log("here");
+        console.log("here");
         // get cards from firebase
         database.getCards(function (cards) {
           console.log("here2");

@@ -9,95 +9,95 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-  
 
-  
+
   <title>codeDeck Select</title>
 
   <script>
-      /**
-       * Be sure they are logged in
-       */
-      var user = localStorage.getItem('user');
-      
-      try{
-        user = JSON.parse(user);
-      } catch (e) {
-        //Handle error
-      }
-      
-      if(!user || !user.email){
-        localStorage.setItem('alert', JSON.stringify({
-          'type': 'error', 
-          'title': 'Login Error', 
-          'text': 'You must be logged into view this page.'}
-        ));
-  
-        document.location = 'sign.html';
-      } 
-    </script>
+    /**
+     * Be sure they are logged in
+     */
+    var user = localStorage.getItem('user');
+
+    try {
+      user = JSON.parse(user);
+    } catch (e) {
+      //Handle error
+    }
+
+    if (!user || !user.email) {
+      localStorage.setItem('alert', JSON.stringify({
+        'type': 'error',
+        'title': 'Login Error',
+        'text': 'You must be logged into view this page.'
+      }));
+
+      document.location = 'sign.html';
+    }
+  </script>
 
 </head>
 
 <body>
 
-<!-- Modal -->
-<div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <!-- Modal -->
+  <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-        <h4 class="modal-title">Contact</h4>
-      </div>
-      <div class="modal-body">
-        <div class="containter">
-          <div class="row">
-          <form class="form-horizontal" name="commentform">
+          <h4 class="modal-title">Contact</h4>
+        </div>
+        <div class="modal-body">
+          <div class="containter">
+            <div class="row">
+              <form class="form-horizontal" name="commentform">
 
-          <div class="col-xs-8">
-            <div class="form-group">
-              <label for="InputName" class="col-lg-4 control-label">Name</label>
-              <div class="col-lg-8">
-                  <input type="text" class="form-control" name="first_name" id="first_name"  required>
+                <div class="col-xs-8">
+                  <div class="form-group">
+                    <label for="InputName" class="col-lg-4 control-label">Name</label>
+                    <div class="col-lg-8">
+                      <input type="text" class="form-control" name="first_name" id="first_name" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="InputEmail" class="col-lg-4 control-label">Email</label>
+                    <div class="col-lg-8">
+                      <input type="email" class="form-control" id="emailForm" name="email" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="InputMessage" class="col-lg-4 control-label">Message</label>
+                    <div class="col-lg-8">
+                      <textarea name="comments" id="comments" class="form-control" rows="5" required></textarea>
+                    </div>
+                  </div>
+
+                  <input type="button" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                </div>
+
+              </form>
+
+              <div class="col-xs-4 text-right">
+                <img class="logo" src="assets/images/codeDeckLogoV2.png" alt="codeDeck Icon" style="height:180px">
               </div>
-          </div>
 
-          <div class="form-group">
-              <label for="InputEmail" class="col-lg-4 control-label">Email</label>
-              <div class="col-lg-8">
-                  <input type="email" class="form-control" id="emailForm" name="email"  required  >
-              </div>
-          </div>
-
-          <div class="form-group">
-              <label for="InputMessage" class="col-lg-4 control-label">Message</label>
-              <div class="col-lg-8">
-                  <textarea name="comments" id="comments" class="form-control" rows="5" required></textarea>
-              </div>
-          </div>
-                      
-          <input type="button" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
-          </div>
-
-          </form>
-
-          <div class="col-xs-4 text-right">
-              <img class="logo" src="assets/images/codeDeckLogoV2.png" alt="codeDeck Icon" style="height:180px">
-          </div>
-
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -112,7 +112,7 @@
         <ul class="nav navbar-nav navbar-right">
 
           <li>
-              <a href="#contactModal" data-toggle="modal">
+            <a href="#contactModal" data-toggle="modal">
               <i class="fa fa-contact "></i>
               <span class="network-name">Contact</span>
               </a>
@@ -120,8 +120,10 @@
 
           <li class="logOff"><a href="javascript:;">Log Off</a></li>
         </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
   </nav>
 
   <div class="container">
@@ -137,10 +139,10 @@
             <form>
 
               <div class="row">
-              
+
                 <div class="col-lg-4 col-sm-12">
                   <div id="gitdeck" class="panel panel-primary">
-                    <div class = "deck-header">
+                    <div class="deck-header">
                       <div class="panel-heading">
                         <h3 class="panel-title"><strong>Github - 31 Cards</strong></h3>
                       </div>
@@ -149,7 +151,9 @@
                         <form>
                           <div>
                             <p>
-                              Having trouble learning the ropes of Github? Did you accidentally merge all of your old work into your project repo? We've all been there, use these cards to brush up on your Git knowledge so you'll never wipe out a week of work again!
+                              Having trouble learning the ropes of Github? Did you accidentally merge all of your old work into your project repo? We've
+                              all been there, use these cards to brush up on your Git knowledge so you'll never wipe out
+                              a week of work again!
                             </p>
                           </div>
                         </form>
@@ -160,7 +164,7 @@
 
                 <div class="col-lg-4 col-sm-12">
                   <div id="cssdeck" class="panel panel-primary">
-                    <div class = "deck-header">
+                    <div class="deck-header">
                       <div class="panel-heading">
                         <h3 class="panel-title"><strong>CSS - Coming Soon!</strong></h3>
                       </div>
@@ -169,7 +173,8 @@
                         <form>
                           <div>
                             <p>
-                            See yourself as a future front-end designer? Not sure how to decorate your website into what you envision? CSS will help you beautify your website!
+                              See yourself as a future front-end designer? Not sure how to decorate your website into what you envision? CSS will help
+                              you beautify your website!
                             </p>
                           </div>
                         </form>
@@ -211,34 +216,29 @@
 
   <!-- FOOTER -->
   <div class="suites">
-  <span class="logo-color">
+    <span class="logo-color">
   &clubs;
   &spades;
-  </span>
-  &hearts;
-  &diams;
+  </span> &hearts; &diams;
   </div>
-  <div class="footer"></div> 
+  <div class="footer"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>  
+  <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="assets/javascript/firebase.js"></script>
   <script src="assets/javascript/contact.js"></script>
-  <script src="assets/javascript/common.js"></script> 
+  <script src="assets/javascript/common.js"></script>
 
   <script>
-
-   $('#gitdeck').click(function(e) {
-        e.preventDefault();
-        window.location = 'review.html';
+    $('#gitdeck').click(function (e) {
+      e.preventDefault();
+      window.location = 'review.html';
     });
-
   </script>
 
 </body>
 
 </html>
-
