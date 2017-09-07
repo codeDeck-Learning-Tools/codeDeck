@@ -1,5 +1,4 @@
 /* Global CSS*/
-
 .navbar.navbar-default {
 	background: black;
 	border: black;
@@ -17,6 +16,7 @@
 body {
 	background: black;
 	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
 	color: white;
 }
 
@@ -124,6 +124,9 @@ p.tagLine {
 	margin-bottom: 5px;
 }
 
+#about-blurb {
+	padding-bottom: 30px;
+}
 
 /* Sign In Page CSS */
 
@@ -144,6 +147,10 @@ p.tagLine {
 
 .form-control {
 	background: #dcdee2;
+}
+
+#sign-text {
+	margin: 3px 0;
 }
 
 .user-login {
@@ -221,4 +228,9 @@ p.tagLine {
 .next-btn:hover {
 	background: #0c8385;
 	border-color: #0c8385;
+}
+
+#exampleModalLabel,
+#giphy-body {
+	text-align: center;
 }
