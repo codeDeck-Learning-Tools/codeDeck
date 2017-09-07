@@ -27,8 +27,8 @@ if (firebase.apps.length === 0) {
         //		callback: 	function to call when cards succesfully
         //							returned from database
 
-    // get a snapshot from the firebase reference
-    // that points to the deck to use
+        // get a snapshot from the firebase reference
+        // that points to the deck to use
         var cards = [];
 
         database.refCards.once('value', function (snapshot) {
@@ -38,9 +38,9 @@ if (firebase.apps.length === 0) {
                 cards.push(childSnap.val());
             });
 
-            if ( typeof callback !== 'undefined' ) {
+            if (typeof callback !== 'undefined') {
                 // run callback function
-                callback( cards );
+                callback(cards);
             }
 
             // log error with firebase request

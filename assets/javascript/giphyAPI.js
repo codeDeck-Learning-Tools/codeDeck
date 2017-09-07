@@ -5,12 +5,11 @@
 
 var giphyGIF = {
   apiKey: "f3971dc19c6240feab39b26de85716d1",
-  host: "https://api.giphy.com/v1/gifs/search?q=",
   limit: 3,
   ratingLimit: "pg-13",
 
   // invokes the ajax request, and displays it on the user's page
-  search: function () {
+  search: function() {
     var queryURL = "https://api.giphy.com/v1/gifs/search?";
 
     // compile search parameters
@@ -25,7 +24,7 @@ var giphyGIF = {
     return $.ajax({
       url: queryURL,
       method: "GET"
-    }).done(function (response) {
+    }).done(function(response) {
       var results = response.data;
 
       console.log(results);
@@ -37,4 +36,6 @@ var giphyGIF = {
   }
 };
 
-giphyGIF.search();
+var giphyLoad = function() {
+  $("#gifModal").modal("show");
+};
