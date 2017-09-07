@@ -27,14 +27,13 @@ if (firebase.apps.length === 0) {
         //		callback: 	function to call when cards succesfully
         //							returned from database
 
-    // get a snapshot from the firebase reference
-    // that points to the deck to use
+        // get a snapshot from the firebase reference
+        // that points to the deck to use
         var cards = [];
 
+        // add cards to the cards array from the database
         database.refCards.once('value', function (snapshot) {
             snapshot.forEach(function (childSnap) {
-                // add each child (card object) to the deck
-                // deck.addCard( childSnap.val() );
                 cards.push(childSnap.val());
             });
 
