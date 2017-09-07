@@ -8,15 +8,13 @@
           under the 'cards' key.
         * deck.lib.js
         * wikiAPI.js
-
-    TODO:
-        * Add animation for transition to next card.
-        * Action for user to take when end of deck is reached.
-
-    Last modified by JD on 9/3/17 at 9:30 AM.
+        * giphyAPI.js
 */
-
+// array of flash cards
 var cards;
+
+// array of urls for gifs
+var arrGifs = [];
 
 // ids for content containers
 var cardContainerId = "card-container";
