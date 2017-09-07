@@ -1,5 +1,4 @@
 /* Global CSS*/
-
 .navbar.navbar-default {
 	background: black;
 	border: black;
@@ -229,4 +228,9 @@ p.tagLine {
 .next-btn:hover {
 	background: #0c8385;
 	border-color: #0c8385;
+}
+
+#exampleModalLabel,
+#giphy-body {
+	text-align: center;
 }
