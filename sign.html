@@ -9,9 +9,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.2.1/pnotify.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
 
   <title>codeDeck Sign-On</title>
+
 </head>
 
 <body>
@@ -52,7 +55,7 @@
                     </div>
                   </div>
 
-                  <input type="button" name="submit" id="submitForm" value="Submit" class="btn btn-info pull-right">
+                  <input type="button" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
                 </div>
 
               </form>
@@ -239,12 +242,9 @@
         $('#first-name').val() &&
         $('#last-name').val() &&
         $('#email').val()) {
-        console.log("here");
         // get cards from firebase
         database.getCards(function (cards) {
-          console.log("here2");
           if (cards && Array.isArray(cards)) {
-            console.log("here3");
             // store cards in local storage
             localStorage.setItem('cards', JSON.stringify(cards));
             localStorage.setItem('user', JSON.stringify({
@@ -259,7 +259,6 @@
           }
         });
       } else {
-        console.log("here4");
         PNotify.prototype.options.styling = "bootstrap3";
         new PNotify({
           title: "Login Error",

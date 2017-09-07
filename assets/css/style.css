@@ -100,6 +100,14 @@ body {
 	color: hsla(0, 0%, 100%, .61)
 }
 
+.about-us {
+	margin-top: 2px;
+}
+
+p.tagLine {
+	margin-bottom: 5px;
+}
+
 
 /* Sign In Page CSS */
 
