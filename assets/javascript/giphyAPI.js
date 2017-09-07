@@ -36,8 +36,6 @@ var giphyGIF = {
   }
 };
 
-giphyGIF.search();
-
 var giphyLoad = function () {
   $("#gifModal").modal('show');
 };
