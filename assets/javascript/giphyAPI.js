@@ -5,7 +5,6 @@
 
 var giphyGIF = {
 	apiKey: "f3971dc19c6240feab39b26de85716d1",
-  host: "https://api.giphy.com/v1/gifs/search?q=",
   limit: 3,
   ratingLimit: "pg-13",
 
@@ -38,3 +37,7 @@ var giphyGIF = {
 };
 
 giphyGIF.search();
+
+var giphyLoad = function () {
+  $("#gifModal").modal('show');
+};
