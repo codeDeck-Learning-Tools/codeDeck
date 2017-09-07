@@ -4,7 +4,7 @@
 
     Object for a flash card deck. May only have one deck at a time.
 */
-var deck = ( function () {
+var deck = (function () {
     var cards = [];
     var discarded = [];
 
@@ -12,12 +12,12 @@ var deck = ( function () {
         // --- public methods --- //
 
         // adds a card to cards arrays
-        'addCard': function ( card ) {
-            cards.push( card );
+        'addCard': function (card) {
+            cards.push(card);
         },
 
         // Returns the count (integer) of remaining cards (not discarded)
-        'cardsRemaining': function() {
+        'cardsRemaining': function () {
             return cards.length;
         },
 
@@ -29,12 +29,12 @@ var deck = ( function () {
         // Pops a card from the cards array and returns it.
         'popCard': function () {
             var poppedCard = cards.pop();
-            discarded.push( poppedCard );
+            discarded.push(poppedCard);
             return poppedCard;
         },
 
         // sets the cards array and reset cards
-        'setCards': function ( arrCards ) {
+        'setCards': function (arrCards) {
             cards = arrCards;
             discarded = [];
         },
@@ -42,13 +42,15 @@ var deck = ( function () {
         // Randomizes the order of the cards. Returns true if succesful.
         'shuffle': function () {
             // do nothing and log an error if cards aren't set
-            if ( cards.length === 0 ) {
-                console.log( 'deck error: No cards to shuffle.' );
+            if (cards.length === 0) {
+                console.log('deck error: No cards to shuffle.');
                 return false;
             }
             // shuffle array of cards in place
-            cards.sort( function ( a, b ) { return 0.5 - Math.random(); } );
+            cards.sort(function (a, b) {
+                return 0.5 - Math.random();
+            });
             return true;
         }
     };
-} )();
+})();
