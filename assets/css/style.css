@@ -52,8 +52,17 @@ body {
 	opacity: 1;
 }
 
+.modal-header h4 {
+	color: hsla(0, 0%, 100%, .61)
+}
+
 .modal-body {
 	background: black;
+}
+
+#submit {
+	background-color: #0c8385;
+	border-color: #005557;
 }
 
 #deck-lineup {
@@ -141,7 +150,7 @@ p.tagLine {
 	float: left;
 }
 
-#sign-btn {
+#submit-info {
 	background-color: #0c8385;
 	border-color: #005557;
 }
