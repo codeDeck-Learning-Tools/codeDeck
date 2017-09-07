@@ -30,9 +30,6 @@ initDeck();
 // show the first card
 handleNextCardBtn();
 
-// request urls for gifs from giphy api
-ajaxGiphy(arrGifs);
-
 // Handles click event on the next card button
 function handleNextCardBtn() {
     // if the user has gone through the deck ...
