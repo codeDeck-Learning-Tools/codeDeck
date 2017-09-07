@@ -43,7 +43,7 @@ var deck = (function () {
         'shuffle': function () {
             // do nothing and log an error if cards aren't set
             if (cards.length === 0) {
-                console.log('deck error: No cards to shuffle.');
+                // an error occured. there are no cards to shuffle
                 return false;
             }
             // shuffle array of cards in place

@@ -1,23 +1,7 @@
 /*
-    Contains two functions to be added to logic.js or the appropriate
-    file for production. Code for testing at the bottom.
-
-    Contents:
-        1   ajaxWikiExtracts function
-        2   getExtractElement function
-        3   test code
-
-    Example element returned by getExtracts:     
-    <div>
-        <a href="https://en.wikipedia.org/wiki/Code%20review">
-            Code review
-        </a>
-        <p>Code review is systematic examination (sometimes referred 
-            to as peer review) of computer source code. It is intended
-            to find mistakes overlooked in software development, 
-            improving the overall quality
-            of...</p>
-    </div>
+    Provides ajaxWikiExtracts function which encapsulates
+    the job of requesting extracts from the Wikipedia
+    API.
 */
 
 /*
@@ -57,7 +41,6 @@ function ajaxWikiExtracts(q, success) {
 
         // success function passed to method
         'success': function (response) {
-            // console.log("response received");
             var articles = [];
 
             $.each(response.query.pages, function () {
@@ -72,7 +55,7 @@ function ajaxWikiExtracts(q, success) {
             success(articles);
         },
         'error': function (err) {
-            console.log('wpAPI Error:', err);
+            // wikipedia API request failed
         }
     });
 }

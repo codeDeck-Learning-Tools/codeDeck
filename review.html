@@ -24,7 +24,7 @@
     try {
       user = JSON.parse(user);
     } catch (e) {
-      //Handle error
+      // invalid or undefined 'user' in local storage
     }
 
     if (!user || !user.email) {
@@ -37,9 +37,7 @@
       document.location = 'sign.html';
     }
   </script>
-
 </head>
-
 <body>
 
   <!-- Modal -->
@@ -234,5 +232,4 @@
   <script src="assets/javascript/contact.js"></script>
   <script src="assets/javascript/review.js"></script>
 </body>
-
 </html>

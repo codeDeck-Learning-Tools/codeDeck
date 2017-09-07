@@ -6,7 +6,7 @@ $('#submit').on('click', function submitCB() {
     database.refContacts = database.ref('contacts');
 
     /**
-     * Prevent the page to refresh
+     * Prevent the page refresh
      * */
     event.preventDefault();
 
