@@ -30,6 +30,49 @@ initDeck();
 // show the first card
 handleNextCardBtn();
 
+/*
+	Calls to Giphy's API for gifs to display to the user
+	upon reaching a progress checkpoint.
+*/
+
+var giphyGIF = {
+    apiKey: "f3971dc19c6240feab39b26de85716d1",
+    limit: 3,
+    ratingLimit: "pg-13",
+  
+    // invokes the ajax request, and displays it on the user's page
+    search: function() {
+      var queryURL = "https://api.giphy.com/v1/gifs/search?";
+  
+      // compile search parameters
+      queryURL += $.param({
+        api_key: this.apiKey,
+        q: "congratulations",
+        limit: this.limit,
+        rating: this.ratingLimit
+      });
+  
+      // done response also takes the url's from the results array objects, then puts them into the html
+      return $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).done(function(response) {
+        var results = response.data;
+  
+        console.log(results);
+  
+        $("#gif1").html('<img src="' + results[0].images.fixed_height.url + '">');
+        $("#gif2").html('<img src="' + results[1].images.fixed_height.url + '">');
+        $("#gif3").html('<img src="' + results[2].images.fixed_height.url + '">');
+      });
+    }
+  };
+  
+var giphyLoad = function () {
+    giphyGIF.search();
+    $("#gifModal").modal("show");
+  };  
+
 // Handles click event on the next card button
 function handleNextCardBtn() {
     // if the user has gone through the deck ...
@@ -37,6 +80,7 @@ function handleNextCardBtn() {
         // ... user has gone through the deck
         // unset current card and update view
         currentCard = null;
+        giphyLoad();
         renderEndOfDeck(cardContainerId);
 
         // if cards remain in the deck ...		
@@ -68,7 +112,7 @@ function getCardElement(front, back = false) {
     // add styling as needed to the outer div containing the card sides
     var cardCss = {
         "border-radius": "25px",
-        "background": "green",
+        "background": "#913400",
         "height": "250px"
         // "width": "450px"
     };
@@ -145,11 +189,11 @@ function renderCard(containerId, card, reverse = false) {
 // Renders end of deck view in card container. Returns element.
 function renderEndOfDeck(containerId) {
 
-    var endOfDeckText = "End of Deck";
+    var endOfDeckText = "You made it!";
 
     return $("#" + containerId)
         .empty()
-        .append("<div class='end-deck'><p>" + endOfDeckText + "</p></div>")
+        .append("<div class='end-deck'><p class='end-box'>" + endOfDeckText + "</p></div>")
         // reset deck button
         .append("<button id='" + resetDeckBtnId +
             "' class='btn btn-default pull-right'>Reset</button>")
