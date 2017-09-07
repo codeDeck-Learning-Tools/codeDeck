@@ -37,9 +37,9 @@ if (firebase.apps.length === 0) {
                 cards.push(childSnap.val());
             });
 
-            if ( typeof callback !== 'undefined' ) {
+            if (typeof callback !== 'undefined') {
                 // run callback function
-                callback( cards );
+                callback(cards);
             }
 
             // log error with firebase request
