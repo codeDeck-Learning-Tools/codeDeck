@@ -244,7 +244,6 @@ p.tagLine {
 /* Flash Card Formating and Responsiveness */
 .card-front {
 	height: 164px;
-	font-size: 1.4em;
 	overflow: hidden;
 }
 
@@ -253,6 +252,8 @@ p.tagLine {
 .back {
 	border: 8px solid #f05135;
 	border-radius: 25px;
+	background-color: #913400;
+	height: 250px;
 }
 
 /* Next Button Styling */
