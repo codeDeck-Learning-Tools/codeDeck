@@ -280,8 +280,13 @@ p.tagLine {
 	text-align: center;
 }
 
+/* Giphy Images */
+#gif1, #gif2, #gif3 {
+	padding: 10px;
+}
+
 /* AdSense image */
 img {
-	width: 100%;
-	height: 100%;
+	width: 60%;
+	height: 60%;
 }
