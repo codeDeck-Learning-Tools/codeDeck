@@ -55,11 +55,7 @@ body {
 	border-bottom: none;
 }
 
-/* Contact Page Close Button */
-.modal-header .close {
-	color: white;
-	opacity: 1;
-}
+
 
 /* Contact Page Header Subtext */
 .modal-header h4 {
@@ -106,6 +102,25 @@ body {
 .git-header p, 
 .css-header p {
 	color: hsla(0, 0%, 100%, .61)
+}
+
+/* Adsense Resposiveness */
+.adsense-box {
+	text-align: center;
+}
+
+/* "Adsense" Resizing */
+#adsense {
+	height: 340px;
+	margin-bottom: 14px;
+	display: initial;
+}
+
+/* Modal Close Button */
+.modal-header .close {
+	color: white;
+	opacity: 1;
+	font-size: 42px;
 }
 
 /* MAIN PAGE CSS */
@@ -207,6 +222,7 @@ p.tagLine {
 	border-color: #0c8385;
 }
 
+
 /* Deck Panel Header Colors */
 .panel-primary>#sign-heading {
 	background: #0c8385;
@@ -252,7 +268,7 @@ p.tagLine {
 
 /* End Deck Message Fonts */
 .end-box {
-	padding: 86px;
+	padding: 52px;
 	font-size: 50px;
 	text-align: center;
 }
@@ -273,8 +289,26 @@ p.tagLine {
 	border-color: #0c8385;
 }
 
+/* Giphy Modal - Full Sizing */
+#gifModal {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .9);
+	color: #fff;
+}
+
+/* Giphy Header */
+#exampleModalLabel.modaltitle {
+	padding: 10px 0;
+}
+
 /* Giphy API Positioning */
 #exampleModalLabel,
 #giphy-body {
 	text-align: center;
+}
+
+/* Giphy Images */
+#gif1, #gif2, #gif3 {
+	padding: 10px;
 }
