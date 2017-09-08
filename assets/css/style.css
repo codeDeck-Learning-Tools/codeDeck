@@ -207,6 +207,7 @@ p.tagLine {
 	border-color: #0c8385;
 }
 
+
 /* Deck Panel Header Colors */
 .panel-primary>#sign-heading {
 	background: #0c8385;
@@ -277,4 +278,15 @@ p.tagLine {
 #exampleModalLabel,
 #giphy-body {
 	text-align: center;
+}
+
+/* Giphy Images */
+#gif1, #gif2, #gif3 {
+	padding: 10px;
+}
+
+/* AdSense image */
+img {
+	width: 60%;
+	height: 60%;
 }
