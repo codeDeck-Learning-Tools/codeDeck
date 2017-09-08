@@ -8,8 +8,8 @@ var config = {
     'messagingSenderId': '82313729151'
 };
 
-if ( firebase.apps.length === 0 ) {
-    firebase.initializeApp( config );
+if (firebase.apps.length === 0) {
+    firebase.initializeApp(config);
 
     /*
         ----- database -----
@@ -19,35 +19,28 @@ if ( firebase.apps.length === 0 ) {
         the names defined in the firebase api.
     */
     var database = firebase.database();
-    database.refCards = database.ref( 'cards' );
+    database.refCards = database.ref('cards');
 
     // Adds cards in database to deck
-    database.getCards = function ( callback ) {
-    // 	Parameters:
-    //		callback: 	function to call when cards succesfully
-    //							returned from database
+    database.getCards = function (callback) {
 
-    // TODO: check sessionStorage for deck
-
-    // get a snapshot from the firebase reference
-    // that points to the deck to use
+        // holds card objects retried from database
         var cards = [];
 
-        database.refCards.once( 'value', function ( snapshot ) {
-            snapshot.forEach( function ( childSnap ) {
-            // add each child (card object) to the deck
-                // deck.addCard( childSnap.val() );
-                cards.push( childSnap.val() );
-            } );
+        // add cards to the cards array from the database
+        database.refCards.once('value', function (snapshot) {
+            snapshot.forEach(function (childSnap) {
+                cards.push(childSnap.val());
+            });
 
-            // TODO: save deck to sessionStorage
+            // run callback if one was passed to this func.
+            if (typeof callback !== 'undefined') {
+                callback(cards);
+            }
 
-            // run callback function
-            callback( cards );
-
-        // log error with firebase request
-        }, function ( err ) {
-            console.log( 'Error loading cards from database:', err );
-        } );
+        // error with firebase request
+        }, function (err) {
+            // do nothing
+        });
     };
 }

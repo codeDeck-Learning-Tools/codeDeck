@@ -1,23 +1,7 @@
 /*
-    Contains two functions to be added to logic.js or the appropriate
-    file for production. Code for testing at the bottom.
-
-    Contents:
-        1   ajaxWikiExtracts function
-        2   getExtractElement function
-        3   test code
-
-    Example element returned by getExtracts:     
-    <div>
-        <a href="https://en.wikipedia.org/wiki/Code%20review">
-            Code review
-        </a>
-        <p>Code review is systematic examination (sometimes referred 
-            to as peer review) of computer source code. It is intended
-            to find mistakes overlooked in software development, 
-            improving the overall quality
-            of...</p>
-    </div>
+    Provides ajaxWikiExtracts function which encapsulates
+    the job of requesting extracts from the Wikipedia
+    API.
 */
 
 /*
@@ -29,9 +13,9 @@
         q:       type string   - search term or terms
         success: type function - callback for ajax response
 */
-function ajaxWikiExtracts ( q, success ) {
+function ajaxWikiExtracts(q, success) {
     var apiUrl = 'https://en.wikipedia.org/w/api.php';
-    $.ajax( {
+    $.ajax({
         'url': apiUrl,
         'dataType': 'jsonp',
 
@@ -56,23 +40,22 @@ function ajaxWikiExtracts ( q, success ) {
         },
 
         // success function passed to method
-        'success': function ( response ) {
-            // console.log("response received");
+        'success': function (response) {
             var articles = [];
 
-            $.each( response.query.pages, function () {
+            $.each(response.query.pages, function () {
                 var url = encodeURI(
-                    'https://en.wikipedia.org/wiki/' + this.title );
-                articles.push( {
+                    'https://en.wikipedia.org/wiki/' + this.title);
+                articles.push({
                     'title': this.title,
                     'text': this.extract,
                     'url': url
-                } );
-            } );
-            success( articles );
+                });
+            });
+            success(articles);
         },
-        'error': function ( err ) {
-            console.log( 'wpAPI Error:', err );
+        'error': function (err) {
+            // wikipedia API request failed
         }
-    } );
+    });
 }

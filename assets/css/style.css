@@ -1,145 +1,314 @@
-/* Global CSS*/
+/* GLOBAL CSS */
+/* Header Background */
 .navbar.navbar-default {
 	background: black;
 	border: black;
 }
 
+/* Header Text */
 .navbar-default .navbar-brand {
 	font-family: 'Roboto', sans-serif;
 	color: white;
 }
 
+/* Spade Coloring */
+.logo-color {
+	color: #4eacc2;
+}
+
+/* Site Background and Fonts */
 body {
 	background: black;
 	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
 	color: white;
-
-/*	background-image: url("../images/background.png");
-	background-repeat: no-repeat;
-	background-position: center;*/
 }
 
+/* Footer: Card Decorations */
 .suites {
 	position: fixed;
 	bottom: 10px;
 	right: 10px;
 }
 
+/* Footer */
 .footer {
 	position: fixed;
 	bottom: 0;
 	right: 0;
 	width: 100%;
-  	border-bottom: 8px solid #4aaaa5;
+	border-bottom: 8px solid #4aaaa5;
 }
 
+/* Contact Page - Full Sizing */
 #contactModal {
-    width: 100%;
-    height: 100%;
-    padding-top: 80px;
-    background-color: rgba(0, 0, 0, .9);
-    color: #fff;
+	width: 100%;
+	height: 100%;
+	padding-top: 80px;
+	background-color: rgba(0, 0, 0, .9);
+	color: #fff;
 }
 
+/* Contact Page Header Background */
 .modal-header {
 	background: black;
 	border-bottom: none;
 }
 
-.modal-header .close {
-	color: white;
-	opacity: 1;
+
+
+/* Contact Page Header Subtext */
+.modal-header h4 {
+	color: hsla(0, 0%, 100%, .61)
 }
 
+/* Contact Page Body Background */
 .modal-body {
 	background: black;
 }
 
-/* Main Page CSS */
+/* Contact Page Submit Button */
+#submit {
+	background-color: #0c8385;
+	border-color: #005557;
+}
+
+/* Submit Button Hover Styling */
+#submit:hover,
+#submit-info:hover {
+	background: #005557;
+	border-color: #0c8385;
+}
+
+/* Deck Sizing */
+#deck-lineup {
+	width: 249px;
+	float: left;
+}
+
+/* GitDeck Header Background */
+.git-header {
+	background: #f05135;
+	margin: 1px;
+}
+
+/* CSSDeck Header Background */
+.css-header {
+	background: #0071b8;
+	margin: 1px;
+}
+
+/* GitDeck & CSSDeck Text */
+.git-header p, 
+.css-header p {
+	color: hsla(0, 0%, 100%, .61)
+}
+
+/* Adsense Resposiveness */
+.adsense-box {
+	text-align: center;
+}
+
+/* "Adsense" Resizing */
+#adsense {
+	height: 340px;
+	margin-bottom: 14px;
+	display: initial;
+}
+
+/* Modal Close Button */
+.modal-header .close {
+	color: white;
+	opacity: 1;
+	font-size: 42px;
+}
+
+/* MAIN PAGE CSS */
+/* Jumbotron */
 .container .jumbotron {
 	padding: 0;
 }
 
+/* Jumbotron Background */
 .jumbotron {
 	background: black;
 }
 
+/* Jumbotron Title */
 .jumbotron h1 {
 	color: white;
 }
 
+/* Jumbotron Logo Placement */
 .logo {
 	float: left;
 }
 
+/* Jumbotron Subtext */
 .jumbotron p {
 	color: grey;
 	font-size: 18px;
 }
 
-.sample h1 {
+/* Decks Available Positioning */
+.lineup {
 	padding: 0 15px 0 15px;
 }
 
-.github-deck {
-	background: green;
-	margin: 1px;
+/* Deck Text */
+.lineup p {
+	color: hsla(0, 0%, 100%, .61);
 }
 
-/* Sign In Page CSS */
-/* PNotify for Login Errors */
+/* Jumbotron Subtext Spacing */
+p.tagLine {
+	margin-bottom: 5px;
+}
+
+/* About Us Spacing to Footer */
+#about-blurb {
+	padding-bottom: 30px;
+}
+
+/* SIGN IN PAGE CSS */
+/* Sign In Panel Positioning and Color */
 #sign-on {
-	margin: auto; 
+	margin: auto;
 	max-width: 400px;
+	border-color: #0c8385;
 }
 
+/* Sign In Panel Header */
+.panel-primary>#sign-heading {
+	background: #0c8385;
+	border-color: #0c8385;
+}
+
+/* Sign In Panel Background */
 .panel-body {
 	background: black;
 }
 
+/* Sign In Panel Input Background */
 .form-control {
 	background: #dcdee2;
 }
 
+/* Sign In Panel Text and Input Field Spacing */
+#sign-text {
+	margin: 3px 0;
+}
+
+/* Submit Button Colors */
+#submit-info {
+	background-color: #0c8385;
+	border-color: #005557;
+}
+
+/* Google Authenticate Positioning */
 .user-login {
 	float: left;
 }
 
+/* Google Authenticate Sizing */
 .google-authenticate {
 	height: 36px;
 	padding: 0 8px;
 }
 
-.ui-pnotify-container {
-    background-color: #EE6161 !important;
-    background-image: none !important;
-    border: none !important;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+/* DECK SELECTION PAGE CSS */
+/* Deck Panel Colors */
+#deck-panel {
+	border-color: #0c8385;
 }
 
-/* Deck Selection Page CSS */
-.gitdeck {
-	height: 200px;
+
+/* Deck Panel Header Colors */
+.panel-primary>#sign-heading {
+	background: #0c8385;
+	border-color: #0c8385;
 }
 
-.wrapper {
-	width: 50%;
+/* Deckbox Sizing */
+#deckbox {
+	width: 215px;
+	height: 272px;
+}
+
+/* GitDeck Cursor */
+#gitdeck:hover {
+    cursor: pointer;
+}
+
+/* CARD REVIEW PAGE CSS */
+/* Flash Card Formating and Responsiveness */
+.card-front {
+	height: 164px;
+	font-size: 1.4em;
+	overflow: hidden;
+}
+
+/* Flash Card Styling */
+.front,
+.back {
+	border: 8px solid #f05135;
+	border-radius: 25px;
+}
+
+/* Next Button Styling */
+.next-btn {
+	background-color: black;
+	border-color: grey;
+}
+
+/* End Deck Sizing to Match Flash Card */
+.end-deck {
+	height: 216px;
+}
+
+/* End Deck Message Fonts */
+.end-box {
+	padding: 52px;
+	font-size: 50px;
 	text-align: center;
 }
 
-.panel-body .deck1 {
+/* Wiki Box Links Fonts */
+#wiki-links a {
 	color: white;
-	font-size: 18px;
-	padding: 0 12px 0;
 }
 
-/* Card Review Page CSS */
-.panel.panel-default.front {
-	background: black;
+/* Wiki Box Information Font Colors */
+#wiki-links p {
+	color: hsla(0, 0%, 100%, .61);
 }
 
-.panel.panel-default.back {
-	background: black;
+/* Next Button Hover Styling */
+.next-btn:hover {
+	background: #0c8385;
+	border-color: #0c8385;
+}
+
+/* Giphy Modal - Full Sizing */
+#gifModal {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .9);
+	color: #fff;
+}
+
+/* Giphy Header */
+#exampleModalLabel.modaltitle {
+	padding: 10px 0;
+}
+
+/* Giphy API Positioning */
+#exampleModalLabel,
+#giphy-body {
+	text-align: center;
+}
+
+/* Giphy Images */
+#gif1, #gif2, #gif3 {
+	padding: 10px;
 }
