@@ -108,6 +108,18 @@ body {
 	color: hsla(0, 0%, 100%, .61)
 }
 
+/* Adsense Resposiveness */
+.adsense-box {
+	text-align: center;
+}
+
+/* "Adsense" Resizing */
+#adsense {
+	height: 340px;
+	margin-bottom: 14px;
+	display: initial;
+}
+
 /* MAIN PAGE CSS */
 /* Jumbotron */
 .container .jumbotron {
@@ -283,10 +295,4 @@ p.tagLine {
 /* Giphy Images */
 #gif1, #gif2, #gif3 {
 	padding: 10px;
-}
-
-/* AdSense image */
-img {
-	width: 60%;
-	height: 60%;
 }
