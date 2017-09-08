@@ -16,15 +16,15 @@
   <title>codeDeck Select</title>
 
   <script>
-    /**
-     * Be sure they are logged in
-     */
+    /*
+      ----- verify the user has logged in -----
+    */
     var user = localStorage.getItem('user');
 
     try {
       user = JSON.parse(user);
     } catch (e) {
-      //Handle error
+      // user key not available
     }
 
     if (!user || !user.email) {
@@ -239,6 +239,7 @@
   <script src="assets/javascript/common.js"></script>
 
   <script>
+    // goto to review.html when user selects the deck
     $('#gitdeck').click(function (e) {
       e.preventDefault();
       window.location = 'review.html';

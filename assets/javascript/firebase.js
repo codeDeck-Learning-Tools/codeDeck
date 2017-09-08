@@ -23,29 +23,24 @@ if (firebase.apps.length === 0) {
 
     // Adds cards in database to deck
     database.getCards = function (callback) {
-        // 	Parameters:
-        //		callback: 	function to call when cards succesfully
-        //							returned from database
 
-        // get a snapshot from the firebase reference
-        // that points to the deck to use
+        // holds card objects retried from database
         var cards = [];
 
+        // add cards to the cards array from the database
         database.refCards.once('value', function (snapshot) {
             snapshot.forEach(function (childSnap) {
-                // add each child (card object) to the deck
-                // deck.addCard( childSnap.val() );
                 cards.push(childSnap.val());
             });
 
+            // run callback if one was passed to this func.
             if (typeof callback !== 'undefined') {
-                // run callback function
                 callback(cards);
             }
 
-            // log error with firebase request
+        // error with firebase request
         }, function (err) {
-            console.log('Error loading cards from database:', err);
+            // do nothing
         });
     };
 }
