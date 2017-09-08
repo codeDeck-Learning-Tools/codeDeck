@@ -185,7 +185,7 @@ function renderCard(containerId, card, reverse = false) {
 // Renders end of deck view in card container. Returns element.
 function renderEndOfDeck(containerId) {
 
-    var endOfDeckText = "You made it!";
+    var endOfDeckText = "Review more?";
 
     return $("#" + containerId)
         .empty()
