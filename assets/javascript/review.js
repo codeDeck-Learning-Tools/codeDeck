@@ -8,7 +8,6 @@
           under the 'cards' key.
         * deck.lib.js
         * wikiAPI.js
-        * giphyAPI.js
 */
 // array of flash cards
 var cards;
@@ -31,10 +30,8 @@ initDeck();
 handleNextCardBtn();
 
 /*
-	Calls to Giphy's API for gifs to display to the user
-	upon reaching a progress checkpoint.
-*/
-
+    Giphy API content
+    --------------------------------------------------------------- */
 var giphyGIF = {
     apiKey: "f3971dc19c6240feab39b26de85716d1",
     limit: 3,
@@ -59,8 +56,7 @@ var giphyGIF = {
       }).done(function(response) {
         var results = response.data;
   
-        console.log(results);
-  
+        // add img urls in the modal
         $("#gif1").html('<img src="' + results[0].images.fixed_height.url + '">');
         $("#gif2").html('<img src="' + results[1].images.fixed_height.url + '">');
         $("#gif3").html('<img src="' + results[2].images.fixed_height.url + '">');
@@ -71,7 +67,7 @@ var giphyGIF = {
 var giphyLoad = function () {
     giphyGIF.search();
     $("#gifModal").modal("show");
-  };  
+};  
 
 // Handles click event on the next card button
 function handleNextCardBtn() {
