@@ -105,12 +105,12 @@ body {
 }
 
 /* Adsense Resposiveness */
-.adsense-box {
+.ad-box {
 	text-align: center;
 }
 
 /* "Adsense" Resizing */
-#adsense {
+#ad {
 	height: 340px;
 	margin-bottom: 14px;
 	display: initial;
