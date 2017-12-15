@@ -14,7 +14,7 @@ codeDeck is a virtual flash card application which features a deck of flash card
 * Philip Ma
 
 ## Walkthrough
-Navigate to codeDeck (https://median-man.github.io/codeDeck/).
+Navigate to codeDeck (https://codedeck-learning-tools.github.io/codeDeck/).
 
 On the top right hand corner, click on "Sign On."
 
