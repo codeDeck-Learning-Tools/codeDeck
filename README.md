@@ -5,7 +5,7 @@ A flash card application to help you study coding concepts.
 codeDeck is a virtual flash card application which features a deck of flash cards for a particular subject and displays them in a random order. Cards are displayed to the user one by one as the user clicks through them.
 
 ## View codeDeck
-[codeDeck](https://median-man.github.io/codeDeck/)
+[codeDeck](https://codedeck-learning-tools.github.io/codeDeck/)
 
 ## Authors
 * Julie Ching
